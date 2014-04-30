@@ -1,0 +1,113 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  background: #dfe0e2 url('/images/pattern.jpg') repeat
+  /* background-color: #eee; */
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: -20px;
+}
+
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin-heading {
+  border-bottom: 1px solid  #d5e3ef;
+  margin-bottom: 14px;
+  color: #478fca !important;
+  font-weight: lighter;
+}
+
+.login-heading {
+  color: #777 !important;
+  font-weight: normal;
+  font-size: 32px;
+}
+
+.domain-heading{
+  color: #dd5a43 !important;
+}
+/* Ace and own style */
+.widget-box {
+  padding: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 3px 0;
+  border: 1px solid #CCC;
+  width: 375px;
+  height: 375px;
+  background: #F7F7F7;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.small-icon {
+  font-size:20px;
+  margin-top:7px;
+}
+
+.square-button {
+  border-radius:0;
+}
+
+.social-or-login {
+  margin-top:4px;
+  text-align:center;
+  position:relative;
+  z-index:1;
+  max-width: 300px;
+}
+
+.social-or-login :first-child {
+  display:inline-block;
+  background:#F7F7F7;
+  padding:0 8px;
+  color:#5090C1;
+  font-size:115% !important;
+}
+
+.social-or-login :before {
+  content:"";
+  display:block;
+  position:absolute;
+  z-index:-1;
+  top:50%;
+  left:0;
+  right:0;
+  border-top:1px dotted #A6C4DB
+}
