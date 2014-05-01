@@ -14,8 +14,8 @@ body {
 }
 
 .checkbox {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   margin-left: -20px;
 }
 
@@ -99,6 +99,7 @@ body {
   padding:0 8px;
   color:#5090C1;
   font-size:115% !important;
+  cursor: pointer;
 }
 
 .social-or-login :before {
@@ -111,3 +112,16 @@ body {
   right:0;
   border-top:1px dotted #A6C4DB
 }
+
+.invite-arrow{
+  display: block;
+  position: relative;
+  z-index:2; 
+  top :26px;
+  left: 254px;
+  font-size:21px;
+  color: #478fca !important;
+  cursor: pointer;
+  width:20px !important;
+}
+
