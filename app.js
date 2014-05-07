@@ -56,6 +56,11 @@ var express = require('express'),
 	  res.sendfile(__dirname + '/index.html');
   });
 
+  router.get('/dashboard', function(req, res) {
+    res.sendfile(__dirname + '/dashboard.html');
+  });
+
+
    // this is default route
   app.use('/', router);
 

@@ -1,0 +1,23 @@
+.grittr-navbar {
+  background: #dfe0e2 url('/images/bg.png') repeat
+}
+
+.grittr-heading {
+  font-weight: normal;
+  font-size: 32px;
+  text-shadow: 2px 2px #000;
+}
+
+.grittr-heading .grittr-heading-domain{
+  color: #dd5a43 !important;
+}
+
+.grittr-heading .grittr-heading-home{
+  color: #CCC !important;
+}
+
+.grittr-border-one {
+  border: 1px solid #000;
+
+}
+

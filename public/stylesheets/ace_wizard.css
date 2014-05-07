@@ -1,0 +1,340 @@
+.grittr-btn-plus {
+  margin-top:5px;
+  margin-left:54px;
+  display: block !important; 
+  border-radius:0;
+}
+
+.grittr-btn-arrow {
+  border-radius: 0;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .grittr-btn-plus {
+    display: block;
+    margin-left:0px;
+  }
+}
+
+.ace-wizard {
+  padding: 0px;
+  margin: 0px;
+}
+
+.ace-wizard h4 {
+  font-size: 18px;
+  font-family: "Open Sans", Helvetica,Arial,sans-serif;
+}
+
+.ace-wizard h3.block {
+  margin-bottom: 16px;
+  color: #69aa46 !important;
+  display: block !important;
+  font-size: 22px;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+}
+
+.ace-wizard input {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0 !important;
+}
+
+@media only screen and (min-width: 767px) { 
+  .grittr-form-group{
+    width:100%;
+  }
+  .grittr-form-group input {
+    width:40% !important;
+  }
+}
+
+
+.ace-wizard label {
+  font-weight: normal;
+  font-size: 14px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+  .ace-wizard label {
+    margin-top: 5px; 
+    margin-left: 0px;
+  }
+}
+
+
+.ace-wizard .form-group {
+  padding-bottom: 10px;
+}
+
+/* make placeholders invisible on focus */
+
+.ace-wizard input:focus::-webkit-input-placeholder {
+   color: transparent;
+}
+
+ .ace-wizard input:focus:-moz-placeholder { /* Firefox 18- */
+   color: transparent;  
+}
+
+.ace-wizard input:focus::-moz-placeholder {  /* Firefox 19+ */
+   color: transparent;  
+}
+
+.ace-wizard input:focus:-ms-input-placeholder {  
+   color: transparent;  
+}
+
+/* Color for different roles */
+.grittr-yellow input {
+  border-color: #e0c43a;
+  color: #d3bd50;
+}
+
+.grittr-yellow  input:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(216, 188, 65, 0.3);
+  box-shadow: 0px 0px 1px 2px rgba(216, 188, 65, 0.3);
+  color: #887755;
+  border-color: #d8bc41;
+}
+.grittr-yellow .control-label,
+.grittr-yellow .help-block,
+.grittr-yellow .help-inline {
+  color: #d19d59;
+}
+
+.grittr-green input {
+  border-color: #92bf65;
+  color: #8bad4c;
+}
+
+.grittr-green  input:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(130, 188, 58, 0.3);
+  box-shadow: 0px 0px 1px 2px rgba(130, 188, 58, 0.3);
+  color: #778866;
+  border-color: #81a85a;
+}
+
+.grittr-green .control-label,
+.grittr-green .help-block,
+.grittr-green .help-inline {
+  color: #7ba065;
+}
+
+.grittr-blue input {
+  border-color: #64a6bc;
+  color: #4b89aa;
+}
+
+.grittr-blue  input:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(58, 120, 188, 0.3);
+  box-shadow: 0px 0px 1px 2px rgba(58, 120, 188, 0.3);
+  color: #667788;
+  border-color: #5a81a8;
+}
+
+.grittr-blue .control-label,
+.grittr-blue .help-block,
+.grittr-blue .help-inline {
+ color: #657ba0;
+}
+
+/* Wizard CSS */
+.wizard-steps {
+  list-style: none;
+  display: table;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.wizard-steps li {
+  display: table-cell;
+  text-align: center;
+  width: 1%;
+}
+
+.wizard-steps li .step {
+  border: 5px solid #ced1d6;
+  color: #546474;
+  font-size: 15px;
+  border-radius: 100%;
+  background-color: #FFF;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.wizard-steps li:before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  font-size: 0;
+  overflow: hidden;
+  border-top: 4px solid #CED1D6;
+  position: relative;
+  top: 21px;
+  z-index: 1;
+}
+.wizard-steps li:last-child:before {
+  max-width: 50%;
+  width: 50%;
+}
+.wizard-steps li:first-child:before {
+  max-width: 51%;
+  left: 50%;
+}
+.wizard-steps li.active:before,
+.wizard-steps li.complete:before,
+.wizard-steps li.active .step,
+.wizard-steps li.complete .step {
+  border-color: #5293c4;
+}
+.wizard-steps li.complete .step {
+  cursor: default;
+  color: #FFF;
+  -webkit-transition: transform ease 0.1s;
+  transition: transform ease 0.1s;
+}
+.wizard-steps li.complete .step:before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 100%;
+  content: "\f00c";
+  background-color: #FFF;
+  z-index: 3;
+  font-family: FontAwesome;
+  font-size: 17px;
+  color: #87ba21;
+}
+.wizard-steps li.complete:hover .step {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  border-color: #80afd4;
+}
+.wizard-steps li.complete:hover:before {
+  border-color: #80afd4;
+}
+.wizard-steps li .title {
+  display: block;
+  margin-top: 4px;
+  max-width: 100%;
+  color: #949ea7;
+  font-size: 14px;
+  z-index: 104;
+  text-align: center;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+.wizard-steps li.complete .title,
+.wizard-steps li.active .title {
+  color: #2b3d53;
+}
+
+
+.step-content {
+  position: relative;
+}
+.step-content .step-pane {
+  display: none;
+  min-height: 200px;
+  padding: 4px 8px 12px;
+}
+.step-content .active {
+  display: block;
+}
+.wizard-actions {
+  text-align: right;
+}
+@media only screen and (max-width: 767px) {
+  .wizard-steps li .step {
+    width: 30px;
+    height: 30px;
+    line-height: 24px;
+    border-width: 3px;
+  }
+  .wizard-steps li:before,
+  .wizard-steps li:after {
+    border-width: 3px;
+  }
+  .wizard-steps li.complete .step:before {
+    line-height: 24px;
+    font-size: 13px;
+  }
+  .wizard-steps li:before {
+    top: 16px;
+  }
+  .step-content .step-pane {
+    padding: 4px 4px 6px;
+    min-height: 150px;
+  }
+}
+
+/* Widget box by ACE Admin*/
+.widget-box {
+  padding: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 3px 0;
+  border: 1px solid #CCC;
+  padding: 0;
+}
+
+.widget-header {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: relative;
+  min-height: 38px;
+  background: #f7f7f7;
+  color: #669fc7;
+  border-bottom: 1px solid #DDD;
+  padding-left: 12px;
+}
+
+.widget-header:before,
+.widget-header:after {
+  content: "";
+  display: table;
+  line-height: 0;
+}
+.widget-header:after {
+  clear: right;
+}
+
+.widget-header > .widget-title {
+  line-height: 36px;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+.lighter {
+  font-weight:lighter;
+}
+.widget-body {
+  background-color: #FFF;
+}
+.widget-main {
+  padding: 12px;
+}
+
+
