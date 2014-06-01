@@ -1,6 +1,14 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1> Viewer mode</h1>
-	  <div id="dice"></div>
-  </div>
-</div>
+  <h1> Viewer mode</h1>
+	<div id="chat"></div>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		jQuery(function($){
+			var socket = io.connect();
+			var $chat = $('#chat');
+			
+			socket.on('new message', function(data){
+			$chat.append(data + "<br/>");
+			});
+		});
+	</script>
