@@ -60,6 +60,15 @@ var express = require('express'),
     res.sendfile(__dirname + '/dashboard.html');
   });
 
+  router.get('/wizard', function(req, res) {
+    res.sendfile(__dirname + '/wizard.html');
+  });
+
+  router.get('/wizard/', function(req, res) {
+    res.sendfile(__dirname + '/wizard.html');
+  });
+
+
 
    // this is default route
   app.use('/', router);

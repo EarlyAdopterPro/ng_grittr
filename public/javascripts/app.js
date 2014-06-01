@@ -1,4 +1,4 @@
-angular.module('grittr', [])
+angular.module('grittr', ['ngRoute'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/roles', {templateUrl:'/partials/roles.html', controller:RoleCtrl })
