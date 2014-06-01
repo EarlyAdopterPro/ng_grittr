@@ -1,7 +1,6 @@
 // Managing the modes list
 
 function RoleCtrl($scope, $location) {
-
   $scope.userRoles = [];
 
   $scope.next = function() {
@@ -17,7 +16,6 @@ function RoleCtrl($scope, $location) {
 
 
   $scope.showDelete = 0;
-  alert("in RoleCntrl");
   $scope.sampleRoles = [
     {role:'manager', place:'company name', color:grittrColors[2]},
     {role:'sister', place:'family', color:grittrColors[0]},
@@ -41,11 +39,8 @@ function RoleCtrl($scope, $location) {
   };
 
    $scope.removeRole = function(roleIndex) {
-  //  alert(roleIndex);
-  //  alert($scope.sampleRoles[roleIndex].role);
     $scope.sampleRoles.splice(roleIndex, 1);  
-
-    console.log($scope.sampleRoles);
+    //console.log($scope.sampleRoles);
    };
 
 }

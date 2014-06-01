@@ -5,7 +5,21 @@ May
 22: [x] tried to remove $scope.sampleRoles by 'delete' and 'splice'
         did not work.
 
-23: [ ] delete one text field row in Roles page.  
+23: [x] delete one text field row in Roles page.  
         I have some alerts left from this session. 
         somehow page reloads the scope if its a link.
         if close object is <span> it remove all data but one... 
+June
+1:  [x] Added local Angular libs. Everything work again
+-------------------------------------------------------------------------------
+
+next: [ ] Animate adding and removing roles.
+hint: Try to read ng-Animate, angular -v 1.2.16
+hint: May be use JQuery for that? 
+
+to-do [ ] Create Login Controller:
+          [ ] when person logins for the first time by the Invite link
+              store the data and create new record for new user. 
+          [ ] Launch Wizard. 
+          [ ] Store all updates in Wizard, such as adding new roles.
+
