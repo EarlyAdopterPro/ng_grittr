@@ -1,0 +1,11 @@
+May 
+
+21: [x] got add sampleRole plus button to add new text field with different color
+
+22: [x] tried to remove $scope.sampleRoles by 'delete' and 'splice'
+        did not work.
+
+23: [ ] delete one text field row in Roles page.  
+        I have some alerts left from this session. 
+        somehow page reloads the scope if its a link.
+        if close object is <span> it remove all data but one... 

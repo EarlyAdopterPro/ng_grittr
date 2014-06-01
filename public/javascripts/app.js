@@ -1,9 +1,7 @@
-angular.module('dice', [])
+angular.module('grittr', [])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/', {templateUrl:'partials/list.html', controller:ModeCtrl })
-      .when('/setter', {templateUrl:'partials/setter.html', controller:SetterCtrl })
-      .when('/viewer', {templateUrl:'partials/viewer.html', controller:ViewerCtrl })
-      .when('/player', {templateUrl:'partials/player.html', controller:PlayerCtrl })
-      .otherwise({ redirectTo:'/list.html'});
+      .when('/roles', {templateUrl:'/partials/roles.html', controller:RoleCtrl })
+      .when('/goals', {templateUrl:'/partials/goals.html', controller:GoalCtrl })
+      .otherwise({ redirectTo:'/roles'});
 }]);

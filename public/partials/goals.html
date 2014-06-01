@@ -1,0 +1,100 @@
+        <!-- Main page -->
+        <div class="col-sm-12 col-md-8 col-md-offset-2 main">
+          <h1 class="page-header">Welcome</h1>
+
+            <!-- PAGE CONTENT BEGINS -->
+          <div class="ace-wizard">
+            <div class="widget-box">
+              <div class="widget-header">
+                <h4 class="widget-title lighter">To start let us know about you</h4>
+              </div>
+                
+                <div class="widget-body">
+                  <div class="widget-main">
+                    <!-- #section:plugins/fuelux.wizard -->
+                    <div id="fuelux-wizard" data-target="#step-container">
+                      <!-- #section:plugins/fuelux.wizard.steps -->
+                      <ul class="wizard-steps">
+                        <li data-target="#step1" class="complete" ng-click="prev()">
+                          <span class="step">
+                            <span class="glyphicon glyphicon-ok"></span>
+                          </span>
+                          <span class="title">Roles</span>
+                        </li>
+
+                        <li data-target="#step2" class="active">
+                          <span class="step">2</span>
+                          <span class="title">Goals</span>
+                        </li>
+
+                        <li data-target="#step3">
+                          <span class="step">3</span>
+                          <span class="title">Actions</span>
+                        </li>
+
+                        <li data-target="#step4">
+                          <span class="step">4</span>
+                          <span class="title">Other Info</span>
+                        </li>
+                      </ul>
+
+                      <!-- /section:plugins/fuelux.wizard.steps -->
+                    </div>
+
+                    <hr />
+
+                    <!-- #section:plugins/fuelux.wizard.container -->
+                    <div class="step-content pos-rel" id="step-container">
+                      <div class="step-pane active" id="step1">
+                        <h3 class="lighter block green">Enter your goals for each role</h3>
+
+                          <form class="form-inline" role="form">
+
+                            <div class="form-group grittr-form-group grittr-yellow">
+                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
+                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="manager">
+                              <label class="control-label" for="exampleInputPassword2"> at </label>
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="company">
+                            </div>
+
+                             <div class="form-group grittr-form-group grittr-green">
+                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
+                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="sister">
+                              <label class="control-label" for="exampleInputPassword2"> at </label>
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="family">
+                            </div>
+
+                            <div class="form-group grittr-form-group grittr-blue">
+                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
+                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="volonteer">
+                              <label class="control-label" for="exampleInputPassword2"> at </label>
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="community">
+                            </div><!-- ./form-group .grittr-green -->
+          
+                          <button type="button" class="btn btn-default btn-md grittr-btn-plus">
+                            <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                      </div><!-- /.step-one .active -->
+
+                    </div><!-- /.step-pane .active -->  
+                    <hr />
+                    <div class="wizard-actions">
+                      <!-- #section:plugins/fuelux.wizard.buttons -->
+                      <button class="btn grittr-btn-prev grittr-btn-arrow" ng-click="prev()">
+                        <i class="glyphicon glyphicon-arrow-left"></i>
+                        Prev
+                      </button>
+
+                      <button class="btn btn-success grittr-btn-arrow grittr-btn-next " ng-click="next()";>
+                        Next
+                        <i class="glyphicon glyphicon-arrow-right"></i>
+                      </button>
+
+                    </div><!-- /.wizard-actions -->
+                  </div><!-- /.widget-main -->
+                </div><!-- /.widget-body -->
+            </div><!-- /.wigdet-box -->
+          </div><!-- /.ace-wizard --> 
+
+        </div> <!-- / Main page -->
+ 
