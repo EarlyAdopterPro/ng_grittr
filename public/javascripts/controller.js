@@ -1,6 +1,6 @@
 // Managing the modes list
 
-function RoleCtrl($scope, $location) {
+function RoleCtrl($scope, $location, $timeout) {
   $scope.userRoles = [];
 
   $scope.next = function() {
@@ -33,18 +33,22 @@ function RoleCtrl($scope, $location) {
 
   iterator = 0;
 
- $scope.addRole = function() {
-    $scope.sampleRoles.push(additionalSampleRoles[iterator++%6]);
-    console.log($scope.sampleRoles);
-  };
+      console.log($scope.sampleRoles);
+     
+    $scope.addRole = function() {
+      $scope.sampleRoles.push(additionalSampleRoles[iterator++%6]);
+      console.log($scope.sampleRoles);
+    };
 
-   $scope.removeRole = function(roleIndex) {
-    $scope.sampleRoles.splice(roleIndex, 1);  
-    //console.log($scope.sampleRoles);
-   };
+    $scope.removeRole = function(roleIndex) {
+      $timeout(function(){
+                $scope.sampleRoles.splice(roleIndex, 1);
+                console.log($scope.sampleRoles);
+                }, 1000);  
+         };
 
 }
-
+// GOAL CONTROLLER
 function GoalCtrl($scope, $location) {
   $scope.next = function() {
     $location.path('/goals'); 
@@ -55,3 +59,13 @@ function GoalCtrl($scope, $location) {
   };
 }
 
+// END OF GOAL CONTROLLER
+
+// ANIMATION
+//.animation('.slideUp', function () {
+//    return {
+//        addClass: function (element, className, done) {
+//            jQuery(element).slideUp(done);
+//        },
+//    }
+//});

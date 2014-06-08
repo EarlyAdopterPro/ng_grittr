@@ -1,19 +1,5 @@
  
       <!-- Main page -->
-
-<style type="text/css">
-.slide.ng-enter, .slide.ng-leave {
-  -webkit-transition:0.5s linear all;
-  transition:0.5s linear all;
-}
- 
-.slide.ng-enter { }        /* starting animations for enter */
-.slide.ng-enter-active { } /* terminal animations for enter */
-.slide.ng-leave { }        /* starting animations for leave */
-.slide.ng-leave-active { } /* terminal animations for leave */
-</style> 
-
-
         <div class="col-sm-12 col-md-8 col-md-offset-2 main">
           <h1 class="page-header">Welcome</h1>
 
@@ -55,7 +41,6 @@
                     </div>
 
                     <hr />
-
                     <!-- #section:plugins/fuelux.wizard.container -->
                     <div class="step-content pos-rel" id="step-container">
                       <div class="step-pane active" id="step1">
@@ -63,11 +48,16 @@
 
                           <form class="form-inline" role="form">
 
-                             <div class="form-group grittr-form-group {{roleItem.color}}" ng-repeat="roleItem in sampleRoles" class="slide" ng-mouseover="showDelete=1" ng-mouseleave="showDelete=0">
+                             <div class="form-group grittr-form-group {{roleItem.color}}" 
+                                ng-repeat="roleItem in sampleRoles" 
+                                ng-mouseover="showDelete=1" 
+                                ng-mouseleave="showDelete=0"
+                                ng-class="{slideUp: visible}">
                               <label class="control-label" for="exampleInputEmail2">I am a  </label>
                               <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="{{roleItem.role}}">
                               <label class="control-label" for="exampleInputPassword2"> at </label>
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}"> <span ng-show="showDelete" ng-click="removeRole($index)">[ x ]</span>
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}">
+                                <span ng-show="showDelete" ng-click="visible = 'hideMe'; removeRole($index)">[ x ]</span>
                             </div>
                                                                    
                           <button type="button" class="btn btn-default btn-md grittr-btn-plus" ng-click="addRole()">

@@ -11,6 +11,17 @@ May
         if close object is <span> it remove all data but one... 
 June
 1:  [x] Added local Angular libs. Everything work again
+
+4:  [ ] Read about Jquery animation: FadeOut http://api.jquery.com/fadeOut/
+<script>
+$( "p" ).click(function() {
+  $( "p" ).fadeOut( "slow" );
+});
+
+Alternatively use ng-animate from 
+
+http://jsfiddle.net/Z2g8B/
+
 -------------------------------------------------------------------------------
 
 next: [ ] Animate adding and removing roles.
