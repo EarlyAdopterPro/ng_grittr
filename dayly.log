@@ -1,3 +1,31 @@
+---------------------------- TO-DO ---------------------------------------------
+NEXT: Check public/js/controller.js and start WelcomeController. 
+
+
+[ ] Create Login Controller:
+    [ ] when person logins for the first time by the Invite link              
+        store the data and create new record for new user. 
+    [ ] Launch Wizard. 
+    [ ] Store all updates in Wizard, such as adding new roles.
+
+
+------------------------------------ DONE --------------------------------------
+next: [x] Animate adding and removing roles./DONE at June 8th
+
+hint: Try to read ng-Animate, angular -v 1.2.16
+hint: May be use JQuery for that? 
+
+------------------------------------ JUNE --------------------------------------
+
+1:  [x] Added local Angular libs. Everything work again
+
+4:  [x] Read about Jquery animation: FadeOut http://api.jquery.com/fadeOut/
+
+8:  [x] Animated delete role input field.
+
+10: [x] 20 min. review.
+
+------------------------------------ MAY --------------------------------------
 May 
 
 21: [x] got add sampleRole plus button to add new text field with different color
@@ -9,28 +37,4 @@ May
         I have some alerts left from this session. 
         somehow page reloads the scope if its a link.
         if close object is <span> it remove all data but one... 
-June
-1:  [x] Added local Angular libs. Everything work again
-
-4:  [ ] Read about Jquery animation: FadeOut http://api.jquery.com/fadeOut/
-<script>
-$( "p" ).click(function() {
-  $( "p" ).fadeOut( "slow" );
-});
-
-Alternatively use ng-animate from 
-
-http://jsfiddle.net/Z2g8B/
-
--------------------------------------------------------------------------------
-
-next: [ ] Animate adding and removing roles.
-hint: Try to read ng-Animate, angular -v 1.2.16
-hint: May be use JQuery for that? 
-
-to-do [ ] Create Login Controller:
-          [ ] when person logins for the first time by the Invite link
-              store the data and create new record for new user. 
-          [ ] Launch Wizard. 
-          [ ] Store all updates in Wizard, such as adding new roles.
 

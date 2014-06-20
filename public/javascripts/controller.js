@@ -1,9 +1,29 @@
-// Managing the modes list
+// Invite On-Boarding Wizard;
+function WelcomeCtrl($scope, $location){
+ // Get GET vars email
+ //
+ // Crete empty  User record object with email
+ //
+ // Request inputs for username and password  
+ //
+ // Proceed to roles wizard
 
+  $scope.nextToRoles = function() {
+    $location.path('/roles');        
+  };
+
+}
+
+//Wizard of Roles
 function RoleCtrl($scope, $location, $timeout) {
   $scope.userRoles = [];
 
   $scope.next = function() {
+    // TODO: 
+    //
+    // #1 Save all field roles in Databas
+    // #2 Follow the path
+
     $location.path('/goals'); 
   };
 
@@ -33,21 +53,23 @@ function RoleCtrl($scope, $location, $timeout) {
 
   iterator = 0;
 
-      console.log($scope.sampleRoles);
+  // console.log($scope.sampleRoles);
      
-    $scope.addRole = function() {
-      $scope.sampleRoles.push(additionalSampleRoles[iterator++%6]);
-      console.log($scope.sampleRoles);
-    };
+  $scope.addRole = function() {
+    $scope.sampleRoles.push(additionalSampleRoles[iterator++%6]);
+    //console.log($scope.sampleRoles);
+  };
 
-    $scope.removeRole = function(roleIndex) {
-      $timeout(function(){
+  $scope.removeRole = function(roleIndex) {
+    // Timeout for SlideUp animation 
+    $timeout(function(){
                 $scope.sampleRoles.splice(roleIndex, 1);
                 console.log($scope.sampleRoles);
                 }, 1000);  
-         };
+    };
 
-}
+} // END OF ROLES CONTROLLER
+
 // GOAL CONTROLLER
 function GoalCtrl($scope, $location) {
   $scope.next = function() {
@@ -57,15 +79,8 @@ function GoalCtrl($scope, $location) {
   $scope.prev = function(){
     $location.path('/roles');
   };
-}
+} // END OF GOAL CONTROLLER
 
-// END OF GOAL CONTROLLER
+// LOGIN FOR THE FIRST TIME CONTROLLER
 
-// ANIMATION
-//.animation('.slideUp', function () {
-//    return {
-//        addClass: function (element, className, done) {
-//            jQuery(element).slideUp(done);
-//        },
-//    }
-//});
+
