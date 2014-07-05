@@ -10,20 +10,22 @@ NEXT: Check public/js/controller.js and start WelcomeController.
 
 
 ------------------------------------ DONE --------------------------------------
-next: [x] Animate adding and removing roles./DONE at June 8th
 
-hint: Try to read ng-Animate, angular -v 1.2.16
-hint: May be use JQuery for that? 
 
 ------------------------------------ JUNE --------------------------------------
 
-1:  [x] Added local Angular libs. Everything work again
+19: [x] started register form on public/partials/invite.html
 
-4:  [x] Read about Jquery animation: FadeOut http://api.jquery.com/fadeOut/
+18: [x] created new partial - invite.html and made the next button work
+
+10: [x] 20 min. review.
 
 8:  [x] Animated delete role input field.
 
-10: [x] 20 min. review.
+4:  [x] Read about Jquery animation: FadeOut http://api.jquery.com/fadeOut/
+
+1:  [x] Added local Angular libs. Everything work again
+
 
 ------------------------------------ MAY --------------------------------------
 May 

@@ -7,81 +7,90 @@
           <div class="ace-wizard">
             <div class="widget-box">
               <div class="widget-header">
-                <h4 class="widget-title lighter">To start let us know about you</h4>
+                <h4 class="widget-title lighter">Feel in the blanks</h4>
               </div>
                 
-                <div class="widget-body">
-                  <div class="widget-main">
-                    <!-- #section:plugins/fuelux.wizard -->
-                    <div id="fuelux-wizard" data-target="#step-container">
-                      <!-- #section:plugins/fuelux.wizard.steps -->
-                      <ul class="wizard-steps">
-                        <li data-target="#step1" class="active">
-                          <span class="step">1</span>
-                          <span class="title">Roles</span>
-                        </li>
+              <div class="widget-body">
+                <div class="widget-main">
+                  <!-- #section:plugins/fuelux.wizard -->
+                  <div id="fuelux-wizard" data-target="#step-container">
+                    <!-- #section:plugins/fuelux.wizard.steps -->
+                    <ul class="wizard-steps">
+                      <li data-target="#step1" class="active">
+                        <span class="step">1</span>
+                        <span class="title">Register</span>
+                      </li>
 
-                        <li data-target="#step2">
-                          <span class="step">2</span>
-                          <span class="title">Goals</span>
-                        </li>
+                      <li data-target="#step2">
+                        <span class="step">2</span>
+                        <span class="title">Roles</span>
+                      </li>
 
-                        <li data-target="#step3">
-                          <span class="step">3</span>
-                          <span class="title">Actions</span>
-                        </li>
+                      <li data-target="#step3">
+                        <span class="step">3</span>
+                        <span class="title">Goals</span>
+                      </li>
 
-                        <li data-target="#step4">
-                          <span class="step">4</span>
-                          <span class="title">Other Info</span>
-                        </li>
-                      </ul>
+                      <li data-target="#step4">
+                        <span class="step">4</span>
+                        <span class="title">Actions</span>
+                      </li>
+                    </ul>
 
-                      <!-- /section:plugins/fuelux.wizard.steps -->
-                    </div>
+                    <!-- /section:plugins/fuelux.wizard.steps -->
+                  </div>
 
-                    <hr />
-                    <!-- #section:plugins/fuelux.wizard.container -->
-                    <div class="step-content pos-rel" id="step-container">
-                      <div class="step-pane active" id="step1">
-                        <h3 class="lighter block green">Enter roles you have in your life</h3>
-
-                          <form class="form-inline" role="form">
-
-                             <div class="form-group grittr-form-group {{roleItem.color}}" 
-                                ng-repeat="roleItem in sampleRoles" 
-                                ng-mouseover="showDelete=1" 
-                                ng-mouseleave="showDelete=0"
-                                ng-class="{slideUp: visible}">
-                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
-                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="{{roleItem.role}}">
-                              <label class="control-label" for="exampleInputPassword2"> at </label>
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}">
-                                <span ng-show="showDelete" ng-click="visible = 'hideMe'; removeRole($index)">[ x ]</span>
+                  <hr />
+                  <!-- #section:plugins/fuelux.wizard.container -->
+                  <div class="step-content pos-rel" id="step-container">
+                    <div class="step-pane active" id="step1">
+                      <h3 class="lighter block green">First, create yourself a password first</h3>
+                      <div class="row">
+                      <div class="col-md-12 col-lg-12">
+                        <form class="form-horizontal" role="form">
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label" for="exampleInputEmail2">Email</label>
+                            <div class="col-sm-8">
+                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="{{email}}" ng-disabled="isDisabled">
                             </div>
-                                                                   
-                          <button type="button" class="btn btn-default btn-md grittr-btn-plus" ng-click="addRole()">
-                            <span class="glyphicon glyphicon-plus"></span>
-                          </button>
-                      </div><!-- /.step-one .active -->
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label" for="exampleInputPassword2">
+                              <strong>Password</strong>
+                            </label>
+                            <div class="col-sm-8">
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label" for="exampleInputPassword2">                              <strong>Repeat password </strong>
+                            </label>
+                            <div class="col-sm-8">
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}">
+                            </div>
+                          </div>
+                          </form>           
+                      </div>          </div>        
 
-                    </div><!-- /.step-pane .active -->  
+                     </div><!-- /.step-pane .active -->
+
+                  </div><!-- /.step-content .pos-rel -->  
                     <hr />
-                    <div class="wizard-actions">
+                  <div class="wizard-actions">
                       <!-- #section:plugins/fuelux.wizard.buttons -->
-                      <button class="btn grittr-btn-prev grittr-btn-arrow">
-                        <i class="glyphicon glyphicon-arrow-left"></i>
+                      <button class="btn grittr-btn-prev grittr-btn-arrow" disabled="disabled">
+                        <i class="glyphicon glyphicon-minus-sign"></i>
                         Prev
                       </button>
 
-                      <button class="btn btn-success grittr-btn-arrow grittr-btn-next"  ng-click="nextToRoles()">
+                      <button class="btn btn-success grittr-btn-arrow grittr-btn-next"  ng-click="next()">
                         Next
                         <i class="glyphicon glyphicon-arrow-right"></i>
                       </button>
 
-                    </div><!-- /.wizard-actions -->
-                  </div><!-- /.widget-main -->
-                </div><!-- /.widget-body -->
+                   </div><!-- /.wizard-actions -->
+                 </div><!-- /.widget-main -->
+               </div><!-- /.widget-body -->
             </div><!-- /.wigdet-box -->
           </div><!-- /.ace-wizard --> 
 

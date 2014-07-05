@@ -1,22 +1,50 @@
 // Invite On-Boarding Wizard;
-function WelcomeCtrl($scope, $location){
- // Get GET vars email
- //
- // Crete empty  User record object with email
- //
- // Request inputs for username and password  
- //
- // Proceed to roles wizard
+function WelcomeCtrl($scope, $location, $routeParams){
 
-  $scope.nextToRoles = function() {
-    $location.path('/roles');        
+ //TODO: Check if this is ineed and email
+
+  // Get GET vars email
+
+  if ($routeParams.email) {
+    $scope.email = $routeParams.email;
+    $scope.isDisabled = true;
+  } else {
+    $scope.email = "email@example.com";
+    $scope.isDisabled = false;
+  }
+         
+
+  // console.log($routeParams.hashkey);
+ 
+  // Crete empty  User record object with email //
+  // Request inputs for username and password  
+  //
+  // Proceed to roles wizard
+
+  $scope.next = function() {
+    if ($routeParams.email){
+      nextParams = "/" + $routeParams.email;
+    } else {
+      nextParams = "";
+    }
+
+    $location.path('/roles' + nextParams); 
   };
 
 }
 
 //Wizard of Roles
-function RoleCtrl($scope, $location, $timeout) {
+function RoleCtrl($scope, $location, $timeout, $routeParams) {
   $scope.userRoles = [];
+
+
+  $scope.prev = function(){
+    if ($routeParams.email){
+      $location.path('/invite/'+ $routeParams.email); 
+    } else {
+      $location.path('/invite/');
+    }
+  };
 
   $scope.next = function() {
     // TODO: 
