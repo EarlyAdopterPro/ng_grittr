@@ -2,7 +2,6 @@
   display:none;
 }
 
-
 .grittr-btn-plus {
   margin-top:5px;
   margin-left:54px;
@@ -25,8 +24,14 @@
   display:none;
 }
 
+.grittr-pointer {
+  cursor:pointer;
+}
 
-
+.grittr-padding-15 {
+  padding-left:15px !important;
+  padding-right:15px !important;  
+}
 
 @media only screen and (min-width: 767px) { 
   .grittr-form-group{

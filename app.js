@@ -3,13 +3,146 @@
 // =============================================
 var express = require('express'),
 	app = express(),
-	server = require('http').createServer(app),
-	io = require('socket.io').listen(server);
-	
+	server =      require('http').createServer(app),
+	io =          require('socket.io').listen(server),
+  mongoose =    require('mongoose'),
+  bodyParser =  require('body-parser'),
+  validator =   require('validator');	
+
   app.use(express.static(__dirname + '/public'));
 
+  // parse application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: false }))
+
+  // parse application/json
+  app.use(bodyParser.json())
+
+  // parse application/vnd.api+json as json
+  app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+
+
+
+// CONNECT MONGOOSE 
+// =============================================
+  mongoose.connect('mongodb://localhost/grittr');
+
+  var db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));
+  db.once('open', function callback () {
+  // yay!
+  });
+
+// MONGOOSE SCHEMAS & MODELS
+// =============================================
+
+var UserSchema = mongoose.Schema({
+  email: {type: String, unique:true},
+  password: String,
+  roles: [{ title: String, color: String, goals: [{title: String}]}],
+  details: [{wizard_passed: Boolean}]
+
+})
+
+var User = mongoose.model('User', UserSchema);
+
+// REST API ROUTES
+// =============================================
+
+// api
+// ---------------------------------------------------------------------
+// post User - create a new record for a new user
+
+app.post('/api/setpass', function(req, res) { 
+  console.log("SetPass Mongoos api hit");
+  console.log(req.body);
+  console.log(req.params);
+
+  if (validator.isEmail(req.body.email)) {
+    User.findOne( {email:req.body.email },'email password', function (err, profile)    {
+      if (err)
+        res.send(err);
+      if(!profile){
+        User.create({
+            email:req.body.email,
+            password: req.body.password,
+            roles:[{}],
+            details:[{wizard_passed:false}]
+          }, function (err, result){
+                if(err)
+                  res.send(err)
+                res.send("USER RECORD CREATED");
+          });
+       } else {
+        console.log ("Saving password");
+        console.log (req.body.password);
+        profile.password = req.body.password;
+        profile.save(function(err, result){
+          if (err){
+            console.log(err);
+            res.send(err);
+          }
+          console.log ("Password saved");
+          res.send(result)
+        });
+        console.log("Password was set");
+       }
+     }); 
+  } else { // email validator else
+      res.send("Email format is incorrect");
+  }
+});
+ 
+// Entry point for Invites;
+app.get('/invite/:email', function(req, res) {
+  console.log("INVITE");
+  console.log(req.params.email);
+
+  // Check if email format is valid
+  if (validator.isEmail(req.params.email)) {
+    console.log ("Data is Email");
+
+    User.findOne( {email:req.params.email}, function(err, user) {
+      if (err)
+        res.send(err)
+      console.log(user);
+
+      if (!user) {
+          // Email is not used, create a new record. 
+          User.create({
+            email:req.params.email,
+            password: null,
+            roles:[{}],
+            details:[{wizard_passed:false}]
+          }, function (err, user){
+              if(err)
+                res.send(err)
+              res.redirect("/wizard#/invite/" + req.params.email);
+          });
+          console.log("NO USER WAS FOUND; new profile created");
+
+      } else {
+          console.log('User exists, email:');
+          console.log(user.email);
+            
+          if(user.details.wizard && user.password != null) {
+            console.log("Password was set previously, redirecting to home");
+            res.redirect("/");
+          } else {
+            console.log("Password was not set, redirecting to wizard");
+            res.redirect("/wizard#/invite/" + req.params.email);
+          }
+        }
+    }); // User.findOne ends here;
+     // res.json(users); // return users with email
+     //res.redirect("http://localhost:3000/wizard#/invite/" + req.params.email);
+  } else {
+    console.log("ERROR: Email format is not valid; Redirecting to home");
+    res.redirect("/"); 
+  }
+  
+})
 // START SERVER
-// ============================================
+// =============================================
   server.listen(3000);
 
 

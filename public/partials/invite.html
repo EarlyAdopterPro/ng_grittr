@@ -50,8 +50,13 @@
                         <form class="form-horizontal" role="form">
                           <div class="form-group">
                             <label class="col-sm-3 control-label" for="exampleInputEmail2">Email</label>
-                            <div class="col-sm-8">
-                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="{{email}}" ng-disabled="isDisabled">
+                            <div class="col-sm-8 input-group grittr-padding-15">
+                              <input type   = "email"  
+                                     class  = "form-control has-warning"  
+                                     id     = "exampleInputEmail2" 
+                                     placeholder  = "{{email}}" 
+                                     ng-disabled  = "emailInputIsDisabled">
+ <div class="input-group-addon"><span class="glyphicon glyphicon-pencil grittr-pointer" ng-click="reset()"></span></div>
                             </div>
                           </div>
                           <div class="form-group">
@@ -59,18 +64,27 @@
                               <strong>Password</strong>
                             </label>
                             <div class="col-sm-8">
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}">
+                              <input  type   = "password" 
+                                      class  = "form-control" 
+                                      id     = "exampleInputPassword2"
+                                      ng-model = "password1">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-sm-3 control-label" for="exampleInputPassword2">                              <strong>Repeat password </strong>
+                            <label  class = "col-sm-3 control-label" 
+                                    for   = "exampleInputPassword2">
+                              <strong>Repeat password </strong>
                             </label>
                             <div class="col-sm-8">
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}">
+                              <input type  = "password" 
+                                     class = "form-control" 
+                                     id    = "exampleInputPassword2"
+                                     ng-model = "password2">
                             </div>
                           </div>
-                          </form>           
-                      </div>          </div>        
+                        </form> 
+                      </div>         
+                      </div><!-- /.row --> 
 
                      </div><!-- /.step-pane .active -->
 

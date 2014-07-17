@@ -1,37 +1,62 @@
 // Invite On-Boarding Wizard;
-function WelcomeCtrl($scope, $location, $routeParams){
-
- //TODO: Check if this is ineed and email
+function WelcomeCtrl($scope, $location, $routeParams, $http){
 
   // Get GET vars email
 
-  if ($routeParams.email) {
+  // If email is in Params - create record for user. It is invited user.
+  if ( $routeParams.email && validator.isEmail($routeParams.email) ) {
     $scope.email = $routeParams.email;
-    $scope.isDisabled = true;
+    $scope.emailInputIsDisabled = true;
   } else {
     $scope.email = "email@example.com";
-    $scope.isDisabled = false;
+    $scope.emailInputIsDisabled = false;
   }
          
 
   // console.log($routeParams.hashkey);
- 
-  // Crete empty  User record object with email //
+  // 
   // Request inputs for username and password  
   //
   // Proceed to roles wizard
+  $scope.reset = function(){
+    $location.path('/invite');
+  }
 
   $scope.next = function() {
-    if ($routeParams.email){
-      nextParams = "/" + $routeParams.email;
+    //  Check if two passwords are equal
+    if ($scope.password1 != $scope.password2){
+      alert("Password should match");
     } else {
-      nextParams = "";
-    }
+      // #3. Check if there is already this email in DB
+      $http({ method:"post", 
+              url:"/api/setpass", 
+              data:{  
+                      email:$scope.email,
+                      password:$scope.password1
+                   }})
+      .success(function(data) {
+      // Everything is ok.
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
 
-    $location.path('/roles' + nextParams); 
+      //
+      // #4. If there is an email update the field - add password
+      //
+      // #5. Else create new record, add email and password 
+
+      if ($routeParams.email) {
+        nextParams = "/" + $routeParams.email;
+      } else {
+        nextParams = "";
+      }
+
+      $location.path('/roles' + nextParams); 
+    }
   };
 
-}
+} // WelcomeCtrl ends here 
 
 //Wizard of Roles
 function RoleCtrl($scope, $location, $timeout, $routeParams) {
