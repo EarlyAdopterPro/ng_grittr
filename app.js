@@ -36,12 +36,18 @@ var express = require('express'),
 // =============================================
 
 var UserSchema = mongoose.Schema({
-  email: {type: String, unique:true},
+  email: {type: String, unique: true},
   password: String,
   roles: [{ title: String, color: String, goals: [{title: String}]}],
-  details: [{wizard_passed: Boolean}]
-
-})
+  // wizard_progress: states - 
+  // 0: not started,
+  // 1: stopped on Register step, password not yet set
+  // 2: stopped on Roles step, password was set
+  // 3: stopped on Goals step, password was set, roals defined
+  // 4: stopped on Actions step, password was set, roals and goals defined
+  // 5: wizard was completed
+  details: {wizard_progress: {type: Number, min:0, max:5} }
+});
 
 var User = mongoose.model('User', UserSchema);
 
@@ -58,7 +64,7 @@ app.post('/api/setpass', function(req, res) {
   console.log(req.params);
 
   if (validator.isEmail(req.body.email)) {
-    User.findOne( {email:req.body.email },'email password', function (err, profile)    {
+    User.findOne( {email:req.body.email },'email password details', function (err, profile)    {
       if (err)
         res.send(err);
       if(!profile){
@@ -66,25 +72,25 @@ app.post('/api/setpass', function(req, res) {
             email:req.body.email,
             password: req.body.password,
             roles:[{}],
-            details:[{wizard_passed:false}]
+            details:{wizard_progress: 1},
           }, function (err, result){
                 if(err)
                   res.send(err)
-                res.send("USER RECORD CREATED");
+                res.send("Wizard_progress: 1 - User created, password set");
           });
        } else {
-        console.log ("Saving password");
+        console.log ("Update record - set password");
         console.log (req.body.password);
         profile.password = req.body.password;
+        profile.details.wizard_progress = 1;
         profile.save(function(err, result){
           if (err){
             console.log(err);
             res.send(err);
           }
-          console.log ("Password saved");
+          console.log ("Wizard_progress: 1 - Password set");
           res.send(result)
         });
-        console.log("Password was set");
        }
      }); 
   } else { // email validator else
@@ -112,19 +118,19 @@ app.get('/invite/:email', function(req, res) {
             email:req.params.email,
             password: null,
             roles:[{}],
-            details:[{wizard_passed:false}]
+            details:{wizard_progress: 0}
           }, function (err, user){
               if(err)
                 res.send(err)
               res.redirect("/wizard#/invite/" + req.params.email);
           });
-          console.log("NO USER WAS FOUND; new profile created");
+          console.log("Wizard progress: 0; new profile created");
 
       } else {
           console.log('User exists, email:');
           console.log(user.email);
             
-          if(user.details.wizard && user.password != null) {
+          if(user.details.wizard_progress > 0  && user.password != null) {
             console.log("Password was set previously, redirecting to home");
             res.redirect("/");
           } else {
@@ -133,8 +139,6 @@ app.get('/invite/:email', function(req, res) {
           }
         }
     }); // User.findOne ends here;
-     // res.json(users); // return users with email
-     //res.redirect("http://localhost:3000/wizard#/invite/" + req.params.email);
   } else {
     console.log("ERROR: Email format is not valid; Redirecting to home");
     res.redirect("/"); 
@@ -201,7 +205,13 @@ app.get('/invite/:email', function(req, res) {
     res.sendfile(__dirname + '/wizard.html');
   });
 
+  router.get('/invite/', function(req, res) {
+    res.sendfile(__dirname + '/wizard.html');
+  });
 
+  router.get('/invite', function(req, res) {
+    res.sendfile(__dirname + '/wizard.html');
+  });
 
   // this is default route
   app.use('/', router);

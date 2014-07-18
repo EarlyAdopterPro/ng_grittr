@@ -28,6 +28,7 @@ function WelcomeCtrl($scope, $location, $routeParams, $http){
       alert("Password should match");
     } else {
       // #3. Check if there is already this email in DB
+      alert($scope.email);
       $http({ method:"post", 
               url:"/api/setpass", 
               data:{  

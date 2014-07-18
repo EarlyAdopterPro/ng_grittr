@@ -50,14 +50,26 @@
                         <form class="form-horizontal" role="form">
                           <div class="form-group">
                             <label class="col-sm-3 control-label" for="exampleInputEmail2">Email</label>
-                            <div class="col-sm-8 input-group grittr-padding-15">
-                              <input type   = "email"  
-                                     class  = "form-control has-warning"  
-                                     id     = "exampleInputEmail2" 
-                                     placeholder  = "{{email}}" 
-                                     ng-disabled  = "emailInputIsDisabled">
- <div class="input-group-addon"><span class="glyphicon glyphicon-pencil grittr-pointer" ng-click="reset()"></span></div>
+                            <div ng-switch="emailInputIsDisabled">
+                              <div class="col-sm-8 input-group grittr-padding-15" ng-switch-when="true">
+                                <input type   = "email"  
+                                       class  = "form-control has-warning"  
+                                       id     = "exampleInputEmail2" 
+                                       placeholder  = "{{email}}" 
+                                       ng-disabled  = "emailInputIsDisabled"
+                                       ng-model = "$parent.email">
+   <div class="input-group-addon"><span class="glyphicon glyphicon-pencil grittr-pointer" ng-click="reset()"></span></div>
+                              </div>
+                              <div class="col-sm-8" ng-switch-when="false">
+                                <input type   = "email"  
+                                       class  = "form-control has-warning"  
+                                       id     = "exampleInputEmail2" 
+                                       placeholder  = "{{email}}" 
+                                       ng-disabled  = "emailInputIsDisabled"
+                                       ng-model = "$parent.email">
+                              </div>
                             </div>
+
                           </div>
                           <div class="form-group">
                             <label class="col-sm-3 control-label" for="exampleInputPassword2">
