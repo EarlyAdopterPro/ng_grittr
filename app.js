@@ -125,7 +125,6 @@ app.get('/invite/:email', function(req, res) {
               res.redirect("/wizard#/invite/" + req.params.email);
           });
           console.log("Wizard progress: 0; new profile created");
-
       } else {
           console.log('User exists, email:');
           console.log(user.email);
@@ -143,7 +142,6 @@ app.get('/invite/:email', function(req, res) {
     console.log("ERROR: Email format is not valid; Redirecting to home");
     res.redirect("/"); 
   }
-  
 })
 // START SERVER
 // =============================================

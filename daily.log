@@ -1,0 +1,47 @@
+--------------------------- TO-DO ---------------------------------------------
+Aug 7: Process error messages coming to login.html via URL GET parametrs from app.js line 120 for example. Pure JS not efficient, need to try either JQuery or create Angular app for login. 
+
+
+NEXT: Check public/js/controller.js and start WelcomeController. 
+
+
+[ ] Create Login Controller:
+    [ ] when person logins for the first time by the Invite link              
+        store the data and create new record for new user. 
+    [ ] Launch Wizard. 
+    [ ] Store all updates in Wizard, such as adding new roles.
+
+
+------------------------------------ DONE --------------------------------------
+
+----------------------------------- AUGUST -------------------------------------
+
+
+------------------------------------ JUNE --------------------------------------
+
+19: [x] started register form on public/partials/invite.html
+
+18: [x] created new partial - invite.html and made the next button work
+
+10: [x] 20 min. review.
+
+8:  [x] Animated delete role input field.
+
+4:  [x] Read about Jquery animation: FadeOut http://api.jquery.com/fadeOut/
+
+1:  [x] Added local Angular libs. Everything work again
+
+
+------------------------------------ MAY --------------------------------------
+May 
+
+21: [x] got add sampleRole plus button to add new text field with different color
+
+22: [x] tried to remove $scope.sampleRoles by 'delete' and 'splice'
+        did not work.
+
+23: [x] delete one text field row in Roles page.  
+        I have some alerts left from this session. 
+        somehow page reloads the scope if its a link.
+        if close object is <span> it remove all data but one... 
+

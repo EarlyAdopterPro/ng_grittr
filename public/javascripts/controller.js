@@ -1,5 +1,5 @@
 // Invite On-Boarding Wizard;
-function WelcomeCtrl($scope, $location, $routeParams, $http){
+function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginService){
 
   // Get GET vars email
 
@@ -12,12 +12,7 @@ function WelcomeCtrl($scope, $location, $routeParams, $http){
     $scope.emailInputIsDisabled = false;
   }
          
-
   // console.log($routeParams.hashkey);
-  // 
-  // Request inputs for username and password  
-  //
-  // Proceed to roles wizard
   $scope.reset = function(){
     $location.path('/invite');
   }
@@ -37,30 +32,44 @@ function WelcomeCtrl($scope, $location, $routeParams, $http){
                    }})
       .success(function(data) {
       // Everything is ok.
+        alert ('login user here');
+
+        AuthService.setUserAuthenticated(true);
+
+        console.log(data);
+
+        if ($routeParams.email) {
+          nextParams = "/" + $routeParams.email;
+        } else {
+          nextParams = "";
+        }
+
+        $location.path('/roles' + nextParams); 
+
       })
       .error(function(data) {
         console.log('Error: ' + data);
       });
-
-      //
-      // #4. If there is an email update the field - add password
-      //
-      // #5. Else create new record, add email and password 
-
-      if ($routeParams.email) {
-        nextParams = "/" + $routeParams.email;
-      } else {
-        nextParams = "";
-      }
-
-      $location.path('/roles' + nextParams); 
     }
   };
+
+      $scope.logoutUser = function() {
+            // run a logout function to your api
+            console.log('LOGOUT ------>');
+            AuthService.setUserAuthenticated(false);
+            $location.path('/');
+        };
+
+        $scope.isLoggedIn = function() {
+            console.log('WclmCtrl:isLoggedIn?' + AuthService.getUserAuthenticated());
+            return AuthService.getUserAuthenticated();
+        };
+
 
 } // WelcomeCtrl ends here 
 
 //Wizard of Roles
-function RoleCtrl($scope, $location, $timeout, $routeParams) {
+function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginService) {
   $scope.userRoles = [];
 
 
@@ -121,6 +130,16 @@ function RoleCtrl($scope, $location, $timeout, $routeParams) {
                 console.log($scope.sampleRoles);
                 }, 1000);  
     };
+   $scope.logoutUser = function() {
+            AuthService.setUserAuthenticated(false);
+            // run a logout function to your api
+            $location.path('/');
+   };
+
+   $scope.isLoggedIn = function() {
+            return AuthService.getUserAuthenticated();
+   };
+
 
 } // END OF ROLES CONTROLLER
 
