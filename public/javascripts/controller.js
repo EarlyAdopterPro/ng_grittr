@@ -2,7 +2,6 @@
 function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginService){
 
   // Get GET vars email
-
   // If email is in Params - create record for user. It is invited user.
   if ( $routeParams.email && validator.isEmail($routeParams.email) ) {
     $scope.email = $routeParams.email;
@@ -23,7 +22,6 @@ function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginS
       alert("Password should match");
     } else {
       // #3. Check if there is already this email in DB
-      alert($scope.email);
       $http({ method:"post", 
               url:"/api/setpass", 
               data:{  
@@ -159,5 +157,33 @@ function HeaderCtrl($scope, AuthService, LoginService){
 
             return AuthService.getUserAuthenticated();
         };
+} // END OF HEADER CONTROLLER
+
+function LoginCtrl($scope, $location, $window, AuthService, LoginService){
+    
+        $scope.loginAction = function() {
+          //AuthService.setUserAuthenticated(true, data.email);
+          console.log("LoginCtrl -> loginAction call");
+          console.log(">loginEmail= "+$scope.loginEmail+"; loginPass= "+$scope.loginPassword);
+          
+          LoginService.attemptLogin($scope.loginEmail, $scope.loginPassword, function(userLoggedIn) {
+            console.log("LoginCtrl Callback -> userLoggedIn = " + userLoggedIn);
+            if (userLoggedIn) {
+              alert ("LoginCtrl Callback -> loginAction -> OK");
+
+              AuthService.setUserAuthenticated(true, $scope.loginEmail);
+              $window.location='/dashboard';
+              
+              // Check at what stage is Wizard?
+              // If wizard is not finished, redirect to required step
+              // Else redirect to Dashboard
+
+            } else {
+              alert ("LoginCtrl -> loginAction -> NOT OK");
+            }
+          });
+        }
+
+
 } // END OF HEADER CONTROLLER
 

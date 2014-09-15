@@ -57,7 +57,7 @@ angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
 // AUTH
 angular.module('auth', [])
 
-    .service('AuthService', [function($scope){
+    .service('AuthService', [function(){
         var userIsAuthenticated = false;
         var userEmail = 'NotYetSet';
 
@@ -80,11 +80,34 @@ angular.module('auth', [])
 }]);
 
 angular.module('login', [])
+    .service('LoginService', ['$http', function($http) {
 
-    .service('LoginService', [function() {
-        this.attemptLogin = function(email, password) {
+        this.attemptLogin = function(email, password, callback) {
+            console.log("LoginService -> send http to Express JS to login user");
+            console.log("LoginService -> userEmail = " + email);
+            console.log("LoginService -> password = " + password);
+
             // create your request to your resource or $http request
-            return true;
+            $http({ method:"post", 
+                    url:"/api/login", 
+                    data:{  
+                            email:email,
+                            password:password
+                         }})
+            .success(function(data) {
+            // Everything is ok.
+              console.log("LoginService -> http[post].success");
+              console.log("> " + data);
+              callback(data);
+              // return data;
+
+
+             })
+            .error(function(data) {
+              console.log('LoginService -> http[post].Error: ' + data);
+              callback(data);
+              return false;
+            });
         };
 
         return this;

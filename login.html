@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app='grittr'>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-   <title>Signin Template for Bootstrap</title>
+
+    <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,11 +23,21 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src='/externaljs/angular-1-2-16/angular.js'></script>
+    <script src='/externaljs/angular-1-2-16/angular-route.js'></script>
+    <script src='/externaljs/angular-1-2-16/angular-animate.js'></script>
+    <script src='/externaljs/angular-1-2-16/angular-resource.js'></script>
+
+    <script src='/externaljs/validator.min.js'></script>
+
+    <script src='/javascripts/app.js'></script>
+    <script src='/javascripts/controller.js'></script>
+  
   </head>
 
   <body>
 
-    <div class="container">
+    <div class="container" ng-controller="LoginCtrl">
       <div class="row">
         <div class="col-md-12"><h1 class="text-center login-heading">Grittr<span class="domain-heading">.co</span></h1> 
         </div>
@@ -34,14 +46,14 @@
         <form class="form-signin" role="form">
           <h2 class="form-signin-heading">Please sign in  <span class="pull-right small-icon glyphicon glyphicon-user"></span>
           </h2>
-          <input type="email" class="form-control" placeholder="Email address" required autofocus>
-          <input type="password" class="form-control" placeholder="Password" required>
+          <input type="email" class="form-control" placeholder="Email address" required autofocus ng-model="loginEmail">
+          <input type="password" class="form-control" placeholder="Password" required ng-model="loginPassword">
 <!--          <label class="checkbox">
             <input type="checkbox"  class="ace" value="remember-me"><span class="lbl"> Remember me</span>
           </label> -->
 <br><br>
 
-          <button class="btn btn-lg btn-primary btn-block square-button" type="submit">Sign in</button>
+          <button class="btn btn-lg btn-primary btn-block square-button"  ng-click="loginAction()">Sign in</button>
         </form>
 <!--
 <span class="invite-arrow glyphicon glyphicon-circle-arrow-down"></span> 

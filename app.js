@@ -86,6 +86,49 @@ app.post('/api/setpass', function(req, res) {
       res.send("Email format is incorrect");
   }
 });
+
+app.post('/api/login', function(req, res) { 
+  console.log("ExpressJS app.js -> /api/login");
+  console.log("> req.body = " + req.body);
+  console.log("> req.params = " + req.params);
+  console.log("> req.body.email = " + req.body.email);
+  console.log("> req.body.password = " + req.body.password);
+
+
+
+  if (validator.isEmail(req.body.email)) {
+    User.findOne({email:req.body.email},'email password details', function (err, profile)    {
+      if (err)
+        res.send(err);
+      if(!profile){
+        console.log ("ExpressJS app.js -> /api/login/ -> User NOT Found");
+        res.send("Error: User Not Found");
+      } else {
+        console.log ("ExpressJS app.js -> /api/login/ -> User Found");
+        console.log ("> Email = " + req.body.email);
+        console.log ("> Password = " + req.body.password);
+        if (req.body.email == profile.email){
+          if (req.body.password == profile.password){
+            console.log(">> LOGIN OK => Email and password match");
+            res.send(true);
+          }
+          else {
+            console.log(">> LOGIN ERR => Password does not match"); 
+            res.send(false);
+          }
+        } else {
+            console.log(">> LOGIN ERR => Email does not match");
+            res.send(false);
+        }
+      }
+    }); 
+  } else { // email validator else
+      res.send("Email format is incorrect");
+  }
+});
+
+
+
  
 // Entry point for Invites;
 app.get('/invite/:email', function(req, res) {

@@ -1,5 +1,5 @@
 --------------------------- TO-DO ---------------------------------------------
-
+Sep 14: Take care of 'Wrong Password case' when user logs in. 
 
 Aug 7: Process error messages coming to login.html via URL GET parametrs from app.js line 120 for example. Pure JS not efficient, need to try either JQuery or create Angular app for login. 
 
@@ -13,6 +13,8 @@ Aug 7: Process error messages coming to login.html via URL GET parametrs from ap
 ------------------------------------ DONE --------------------------------------
 
 ----------------------------------- SEPTEMBER ----------------------------------
+14: Login now works. Redirecting to Dashboard. 
+
 14: show user's email in navbar when logged in.
 
 ToDoLog: Aug 26: Trying to path data about logged in user to header. 
