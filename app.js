@@ -35,21 +35,8 @@ var express = require('express'),
 // MONGOOSE SCHEMAS & MODELS
 // =============================================
 
-var UserSchema = mongoose.Schema({
-  email: {type: String, unique: true},
-  password: String,
-  roles: [{ title: String, color: String, goals: [{title: String}]}],
-  // wizard_progress: states - 
-  // 0: not started,
-  // 1: stopped on Register step, password not yet set
-  // 2: stopped on Roles step, password was set
-  // 3: stopped on Goals step, password was set, roals defined
-  // 4: stopped on Actions step, password was set, roals and goals defined
-  // 5: wizard was completed
-  details: {wizard_progress: {type: Number, min:0, max:5} }
-});
-
-var User = mongoose.model('User', UserSchema);
+var UserModel = require('./models/user-model'); 
+var User = mongoose.model('User', UserModel.UserSchema);
 
 // REST API ROUTES
 // =============================================
@@ -64,7 +51,7 @@ app.post('/api/setpass', function(req, res) {
   console.log(req.params);
 
   if (validator.isEmail(req.body.email)) {
-    User.findOne( {email:req.body.email },'email password details', function (err, profile)    {
+    User.findOne({email:req.body.email},'email password details', function (err, profile)    {
       if (err)
         res.send(err);
       if(!profile){
@@ -145,6 +132,7 @@ app.get('/invite/:email', function(req, res) {
     res.redirect("/"); 
   }
 })
+
 // START SERVER
 // =============================================
   server.listen(3000);
