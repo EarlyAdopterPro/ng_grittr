@@ -32,11 +32,12 @@ function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginS
                    }})
       .success(function(data) {
       // Everything is ok.
-        alert ('login user here');
-
-        AuthService.setUserAuthenticated(true);
-
+        alert ('WelcomeCtrl: login user ');
         console.log(data);
+        console.log(data.email);
+
+        AuthService.setUserAuthenticated(true, data.email);
+
 
         if ($routeParams.email) {
           nextParams = "/" + $routeParams.email;
@@ -52,19 +53,6 @@ function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginS
       });
     }
   };
-
-      $scope.logoutUser = function() {
-            // run a logout function to your api
-            console.log('LOGOUT ------>');
-            AuthService.setUserAuthenticated(false);
-            $location.path('/');
-        };
-
-        $scope.isLoggedIn = function() {
-            console.log('WclmCtrl:isLoggedIn?' + AuthService.getUserAuthenticated());
-            return AuthService.getUserAuthenticated();
-        };
-
 
 } // WelcomeCtrl ends here 
 
@@ -130,16 +118,6 @@ function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginS
                 console.log($scope.sampleRoles);
                 }, 1000);  
     };
-   $scope.logoutUser = function() {
-            AuthService.setUserAuthenticated(false);
-            // run a logout function to your api
-            $location.path('/');
-   };
-
-   $scope.isLoggedIn = function() {
-            return AuthService.getUserAuthenticated();
-   };
-
 
 } // END OF ROLES CONTROLLER
 
@@ -154,6 +132,32 @@ function GoalCtrl($scope, $location) {
   };
 } // END OF GOAL CONTROLLER
 
-// LOGIN FOR THE FIRST TIME CONTROLLER
 
+// HEADER CONTROLLER
+function HeaderCtrl($scope, AuthService, LoginService){
+
+        console.log('HeaderCtrl:UserEmail -> getUserCredentials() = ' + AuthService.getUserCredentials());
+        $scope.userEmail = "TEST"; 
+        $scope.userEmail = AuthService.getUserCredentials();
+
+         $scope.logoutUser = function() {
+            // run a logout function to your api
+            console.log('HeaderCtrl: LOGOUT ------>');
+            AuthService.setUserAuthenticated(false, null);
+            $location.path('/');
+        };
+
+        $scope.isLoggedIn = function() {
+            console.log('HeaderCtrl: isLoggedIn? = ' + AuthService.getUserAuthenticated());
+            userAuthStatus = AuthService.getUserAuthenticated();
+            if (userAuthStatus){ 
+               $scope.userEmail = AuthService.getUserCredentials();
+            } else {
+                $scope.userEmail = "HeaderCtrl:NAN";
+            }
+
+
+            return AuthService.getUserAuthenticated();
+        };
+} // END OF HEADER CONTROLLER
 

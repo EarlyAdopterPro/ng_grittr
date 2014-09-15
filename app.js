@@ -76,7 +76,9 @@ app.post('/api/setpass', function(req, res) {
           }, function (err, result){
                 if(err)
                   res.send(err)
-                res.send("Wizard_progress: 1 - User created, password set");
+                console.log("/api/setpass: Wizard_progress: 1 - User created, password set");
+                res.send(result);
+
           });
        } else {
         console.log ("Update record - set password");

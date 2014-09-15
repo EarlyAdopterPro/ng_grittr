@@ -15,8 +15,7 @@ angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
        })
       .when('/',
                 {
-                  templateUrl:'/partials/invite.html', 
-                  controller:WelcomeCtrl,
+                  templateUrl:'/partials/invite.html', controller:WelcomeCtrl,
                   requireLogin: false 
        })
       .when('/roles', 
@@ -58,11 +57,19 @@ angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
 // AUTH
 angular.module('auth', [])
 
-    .service('AuthService', [function(){
+    .service('AuthService', [function($scope){
         var userIsAuthenticated = false;
+        var userEmail = 'NotYetSet';
 
-        this.setUserAuthenticated = function(value) {
+        this.setUserAuthenticated = function(value, email) {
             userIsAuthenticated = value;
+            console.log("AuthService:setUserAuthenrication: " + value + " & email:  " + email)
+            userEmail = email;
+        };
+
+        this.getUserCredentials = function() {
+            console.log("AuthService:getUserCredentials -> userEmail = " + userEmail);
+            return userEmail;
         };
 
         this.getUserAuthenticated = function() {
