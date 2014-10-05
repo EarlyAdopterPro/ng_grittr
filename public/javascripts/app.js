@@ -30,6 +30,16 @@ angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
                 {templateUrl:'/partials/goals.html', controller:GoalCtrl,
                   requireLogin: true 
        })
+      .when('/dashoard/', // need to solve issue with trailing slashes
+//https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-make-a-trailing-slash-optional-for-all-routes
+                {templateUrl:'/partials/dashboard.html', controller:DashCtrl,
+                 requireLogin: true 
+       })
+      .when('/dashboard', 
+                {templateUrl:'/partials/dashboard.html', controller:DashCtrl,
+                 requireLogin: true 
+       })
+
       .otherwise({ redirectTo:'/'});
 }])
 
@@ -83,9 +93,11 @@ angular.module('login', [])
     .service('LoginService', ['$http', function($http) {
 
         this.attemptLogin = function(email, password, callback) {
-            console.log("LoginService -> send http to Express JS to login user");
+            console.log("LoginService -> send http to ExpressJS to login user");
             console.log("LoginService -> userEmail = " + email);
             console.log("LoginService -> password = " + password);
+            console.log("LoginService -> $http call to ExpressJS");
+            console.log("============= $HTTP /api/login > =============");
 
             // create your request to your resource or $http request
             $http({ method:"post", 
@@ -97,10 +109,9 @@ angular.module('login', [])
             .success(function(data) {
             // Everything is ok.
               console.log("LoginService -> http[post].success");
-              console.log("> " + data);
+              console.log("> data =" + data);
               callback(data);
               // return data;
-
 
              })
             .error(function(data) {

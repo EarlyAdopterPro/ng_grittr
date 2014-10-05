@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/bootstrap_dashboard.css" rel="stylesheet">
+    <link href="/stylesheets/dashboard.css" rel="stylesheet">
+<!--    <link href="/stylesheets/ace.css" rel="stylesheet"> -->
+    <link href="/stylesheets/ace_wizard.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top grittr-navbar" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand grittr-heading" href="/dashboard"><span class="grittr-heading-home">Grittr</span><span class="grittr-heading-domain">.co</span></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://getbootstrap.com/examples/dashboard/#">Dashboard</a></li>
+            <li><a href="http://getbootstrap.com/examples/dashboard/#">Settings</a></li>
+            <li><a href="http://getbootstrap.com/examples/dashboard/#">Profile</a></li>
+            <li><a href="http://getbootstrap.com/examples/dashboard/#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="http://getbootstrap.com/examples/dashboard/#">Overview</a></li>
+            <li><a href="http://getbootstrap.com/examples/dashboard/#">Reports</a></li>
+            <li><a href="http://getbootstrap.com/examples/dashboard/#">Analytics</a></li>
+            <li><a href="http://getbootstrap.com/examples/dashboard/#">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div><!-- /.sidebar -->
+        <!-- Main page -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 col-md-pull-1 col-lg-8 col-lg-pull-1 col-lg-offset-4 main">
+          <h1 class="page-header">Welcome</h1>
+
+  					<!-- PAGE CONTENT BEGINS -->
+          <div class="ace-wizard">
+						<div class="widget-box">
+							<div class="widget-header">
+								<h4 class="widget-title lighter">To start let us know about you</h4>
+              </div>
+								
+								<div class="widget-body">
+									<div class="widget-main">
+										<!-- #section:plugins/fuelux.wizard -->
+										<div id="fuelux-wizard" data-target="#step-container">
+											<!-- #section:plugins/fuelux.wizard.steps -->
+											<ul class="wizard-steps">
+												<li data-target="#step1" class="active">
+													<span class="step">1</span>
+													<span class="title">Roles</span>
+												</li>
+
+												<li data-target="#step2">
+													<span class="step">2</span>
+													<span class="title">Goals</span>
+												</li>
+
+												<li data-target="#step3">
+													<span class="step">3</span>
+													<span class="title">Actions</span>
+												</li>
+
+												<li data-target="#step4">
+													<span class="step">4</span>
+													<span class="title">Other Info</span>
+												</li>
+											</ul>
+
+											<!-- /section:plugins/fuelux.wizard.steps -->
+										</div>
+
+										<hr />
+
+										<!-- #section:plugins/fuelux.wizard.container -->
+										<div class="step-content pos-rel" id="step-container">
+											<div class="step-pane active" id="step1">
+												<h3 class="lighter block green">Enter roles you have in your life</h3>
+
+                          <form class="form-inline" role="form">
+
+                            <div class="form-group grittr-form-group grittr-yellow">
+                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
+                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="manager">
+                              <label class="control-label" for="exampleInputPassword2"> at </label>
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="company">
+                            </div>
+
+                             <div class="form-group grittr-form-group grittr-green">
+                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
+                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="sister">
+                              <label class="control-label" for="exampleInputPassword2"> at </label>
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="family">
+                            </div>
+
+                            <div class="form-group grittr-form-group grittr-blue">
+                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
+                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="volonteer">
+                              <label class="control-label" for="exampleInputPassword2"> at </label>
+                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="community">
+                            </div><!-- ./form-group .grittr-green -->
+          
+                          <button type="button" class="btn btn-default btn-md grittr-btn-plus">
+                            <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                      </div><!-- /.step-one .active -->
+
+                    </div><!-- /.step-pane .active -->	
+										<hr />
+										<div class="wizard-actions">
+											<!-- #section:plugins/fuelux.wizard.buttons -->
+											<button class="btn grittr-btn-prev grittr-btn-arrow">
+												<i class="glyphicon glyphicon-arrow-left"></i>
+												Prev
+											</button>
+
+											<button class="btn btn-success grittr-btn-arrow grittr-btn-next " data-last="Finish">
+												Next
+												<i class="glyphicon glyphicon-arrow-right"></i>
+											</button>
+
+										</div><!-- /.wizard-actions -->
+									</div><!-- /.widget-main -->
+								</div><!-- /.widget-body -->
+            </div><!-- /.wigdet-box -->
+          </div><!-- /.ace-wizard --> 
+
+        </div> <!-- / Main page -->
+      </div> <!-- ./ row -->
+    </div><!-- /.container-fluid -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/externaljs/jquery.min.js"></script>
+    <script src="/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="/externaljs/docs.min.js"></script>
+  
+
+</body></html>

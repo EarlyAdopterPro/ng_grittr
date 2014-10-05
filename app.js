@@ -87,14 +87,16 @@ app.post('/api/setpass', function(req, res) {
   }
 });
 
+// Login User 
 app.post('/api/login', function(req, res) { 
+
+  console.log("============= > $HTTP /api/login  ====================");
+
   console.log("ExpressJS app.js -> /api/login");
   console.log("> req.body = " + req.body);
   console.log("> req.params = " + req.params);
   console.log("> req.body.email = " + req.body.email);
   console.log("> req.body.password = " + req.body.password);
-
-
 
   if (validator.isEmail(req.body.email)) {
     User.findOne({email:req.body.email},'email password details', function (err, profile)    {
@@ -123,7 +125,8 @@ app.post('/api/login', function(req, res) {
       }
     }); 
   } else { // email validator else
-      res.send("Email format is incorrect");
+      console.log(">> LOGIN ERR => Wrong format for email field"); 
+      res.send(false);
   }
 });
 
@@ -203,7 +206,7 @@ app.get('/invite/:email', function(req, res) {
   });
 
   // apply the routes to our application
-  // we can use multiple route groups: basic routes, authentification routes, etc
+  // we can use multiple route groups: basic routes,authentification routes, etc
 
   app.route('/')
 
@@ -221,11 +224,7 @@ app.get('/invite/:email', function(req, res) {
 
   // home page route (http://localhost:3000)
   router.get('/grittr', function(req, res){
-	  res.sendfile(__dirname + '/index.html');
-  });
-
-  router.get('/dashboard', function(req, res) {
-    res.sendfile(__dirname + '/dashboard.html');
+	  res.sendfile(__dirname + '/dashboard.html');
   });
 
   router.get('/wizard', function(req, res) {

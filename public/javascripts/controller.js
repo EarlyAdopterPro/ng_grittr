@@ -164,15 +164,18 @@ function LoginCtrl($scope, $location, $window, AuthService, LoginService){
         $scope.loginAction = function() {
           //AuthService.setUserAuthenticated(true, data.email);
           console.log("LoginCtrl -> loginAction call");
-          console.log(">loginEmail= "+$scope.loginEmail+"; loginPass= "+$scope.loginPassword);
+          console.log("> loginEmail= "+$scope.loginEmail+"; loginPass= "+$scope.loginPassword);
           
           LoginService.attemptLogin($scope.loginEmail, $scope.loginPassword, function(userLoggedIn) {
             console.log("LoginCtrl Callback -> userLoggedIn = " + userLoggedIn);
-            if (userLoggedIn) {
-              alert ("LoginCtrl Callback -> loginAction -> OK");
+            if (userLoggedIn == 'true') {
 
+              console.log("LoginCtrl -> SetUserAuth");
               AuthService.setUserAuthenticated(true, $scope.loginEmail);
-              $window.location='/dashboard';
+              console.log(AuthService.getUserAuthenticated()); 
+              alert ("LoginCtrl Callback -> loginAction -> OK");
+$scope = $scope || angular.element(document).scope();
+              $window.location='/grittr/';
               
               // Check at what stage is Wizard?
               // If wizard is not finished, redirect to required step
@@ -180,10 +183,22 @@ function LoginCtrl($scope, $location, $window, AuthService, LoginService){
 
             } else {
               alert ("LoginCtrl -> loginAction -> NOT OK");
+              $window.location='/?err=1';
+
             }
           });
         }
+} // END OF LOGIN CONTROLLER
+
+function DashCtrl($scope, $location, $window, AuthService, LoginService){
+  alert('DashCtrl');
+  console.log('=============== Dashboard Controller ==================');
+  console.log('> values of $scope');
+  console.log($scope);
+
+  //$location.path('/dashboard/'; 
 
 
-} // END OF HEADER CONTROLLER
+    
+} // END OF DASBOARD CONTROLLER
 
