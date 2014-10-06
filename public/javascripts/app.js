@@ -1,6 +1,12 @@
 angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
+
+      .when('/invite', 
+                {templateUrl:'/partials/invite.html', controller:WelcomeCtrl,
+                 requireLogin: false 
+       })
+
       .when('/invite/', 
                 {templateUrl:'/partials/invite.html', controller:WelcomeCtrl,
                  requireLogin: false 
@@ -15,7 +21,7 @@ angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
        })
       .when('/',
                 {
-                  templateUrl:'/partials/invite.html', controller:WelcomeCtrl,
+                  templateUrl:'/partials/login.html', controller:LoginCtrl,
                   requireLogin: false 
        })
       .when('/roles', 

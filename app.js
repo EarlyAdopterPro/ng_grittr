@@ -208,41 +208,32 @@ app.get('/invite/:email', function(req, res) {
   // apply the routes to our application
   // we can use multiple route groups: basic routes,authentification routes, etc
 
-  app.route('/')
-
-    // show the form (GET http://localhost:8080/login)
-    .get(function(req, res) {
-  	  res.sendfile(__dirname + '/login.html');
-   //   res.send('this is the login form');
-    })
-
-    // process the form (POST http://localhost:8080/login)
-    .post(function(req, res) {
-      console.log('processing');
-      res.send('processing the login form!');
-    });
 
   // home page route (http://localhost:3000)
-  router.get('/grittr', function(req, res){
-	  res.sendfile(__dirname + '/dashboard.html');
+  router.get('/', function(req, res){
+	  res.sendfile(__dirname + '/index.html');
   });
 
-  router.get('/wizard', function(req, res) {
-    res.sendfile(__dirname + '/wizard.html');
-  });
-
-  router.get('/wizard/', function(req, res) {
-    res.sendfile(__dirname + '/wizard.html');
-  });
-
-  router.get('/invite/', function(req, res) {
-    res.sendfile(__dirname + '/wizard.html');
-  });
-
-  router.get('/invite', function(req, res) {
-    res.sendfile(__dirname + '/wizard.html');
-  });
-
+//  router.get('/grittr', function(req, res){
+//	  res.sendfile(__dirname + '/dashboard.html');
+//  });
+//
+//  router.get('/wizard', function(req, res) {
+//    res.sendfile(__dirname + '/wizard.html');
+//  });
+//
+//  router.get('/wizard/', function(req, res) {
+//    res.sendfile(__dirname + '/wizard.html');
+//  });
+//
+//  router.get('/invite/', function(req, res) {
+//    res.sendfile(__dirname + '/wizard.html');
+//  });
+//
+//  router.get('/invite', function(req, res) {
+//    res.sendfile(__dirname + '/wizard.html');
+//  });
+//
   // this is default route
   app.use('/', router);
 
