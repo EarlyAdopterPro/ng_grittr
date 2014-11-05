@@ -44,22 +44,37 @@
                       <div class="step-pane active" id="step1">
                         <h3 class="lighter block green">Enter roles you have in your life</h3>
 
-                          <form class="form-inline" role="form">
-
-                             <div class="form-group grittr-form-group {{roleItem.color}}" 
-                                ng-repeat="roleItem in sampleRoles" 
+                          <form class="form-inline" role="form" name="RoleForm">
+                          <!-- this div should accept color var from role from MongoDB and appy it -->
+                             <div class="form-group grittr-form-group" 
+                                ng-if="userRoles"
+                                ng-repeat="roleItem in userRoles" 
                                 ng-mouseover="showDelete=1" 
                                 ng-mouseleave="showDelete=0"
                                 ng-class="{slideUp: visible}">
                               <label class="control-label" for="exampleInputEmail2">I am a  </label>
-                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="{{roleItem.role}}">
+                              <input type="text" class="form-control has-warning" id="exampleInputEmail2" ng-model="roleItem.role">
                               <label class="control-label" for="exampleInputPassword2"> at </label>
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{roleItem.place}}">
+                              <input type="text" class="form-control" id="exampleInputPassword2" ng-model="roleItem.place">
+                                <span ng-show="showDelete" ng-click="visible = 'hideMe'; removeRole($index)">[ x ]</span>
+                            </div>
+
+                             <div class="form-group grittr-form-group {{roleItem.color}}" 
+                                ng-repeat="roleItem in newRoles track by $index" 
+                                ng-mouseover="showDelete=1" 
+                                ng-mouseleave="showDelete=0"
+                                ng-class="{slideUp: visible}"
+                                >
+                                <span class="error" ng-show="RoleForm..$error.required">Required!</span>
+                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
+                              <input type="text" class="form-control has-warning" id="exampleInputEmail2" placeholder="{{sampleRoles[$index].role}}" ng-model="roleItem.role" required >
+                              <label class="control-label" for="exampleInputPassword2"> at </label>
+                              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="{{sampleRoles[$index].place}}" ng-model="roleItem.place" required >
                                 <span ng-show="showDelete" ng-click="visible = 'hideMe'; removeRole($index)">[ x ]</span>
                             </div>
                                                                    
                           <button type="button" class="btn btn-default btn-md grittr-btn-plus" ng-click="addRole()">
-                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-plus"></span> Add Role
                           </button>
                       </div><!-- /.step-one .active -->
 

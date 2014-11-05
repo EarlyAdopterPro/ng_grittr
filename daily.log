@@ -1,10 +1,5 @@
 --------------------------------- TO-DO LOG -----------------------------------
-Oct 2: Need to user ComparePasswords from UserModel to ensure bcrypt comparison
-
-Sep 24: Log in not working again. Error ENTNOT Try wrong Email or wrong Password
-
-Sep 15: Trying to correctly redirect after logining. Check /dashboard/ , #/dashboard links
-
+Nov 5: Need to take care of switch cases when Roles already inputed & Wizard = 2
 
 --------------------------------- LEFTOVERS ------------------------------------
 Sep 14: Take care of 'Wrong Password case' when user logs in. 
@@ -18,9 +13,28 @@ Aug 7: Process error messages coming to login.html via URL GET parametrs from ap
     [ ] Store all updates in Wizard, such as adding new roles.
 
 
-==================================== DONE ======================================
+=================================== PROGRESS =================================
 
+----------------------------------- NOVEMBER ---------------------------------
+5: Adding goals to Mongo, updating Wizard status
+
+
+5: > Oct 21: in Roles template make dummy list with three empty objects, loop over them and use sampleRoles as an array with $index to fill in placeholder attribute. Check how I am iterating between colors?  
+
+5: > Oct 10: Think how to create User obj which will hold all data of Planner. And may be update is as socket.io
 ----------------------------------- OCTOBER ----------------------------------
+21: Tryed using ng-model in ng-repeat. It's saving as $scope.sampleRoles (http://jsfiddle.net/mrajcok/7MhLd/)
+
+20: Started linking existing roles to the Wizard.
+
+15: Check wizard Status and redirect accordinally. Use Auth Service to store User Profile
+
+10 > Sep 15: Trying to correctly redirect after logining. Check /dashboard/ , #/dashboard links
+
+9 > Oct 2: Need to user ComparePasswords from UserModel to ensure bcrypt comparison
+
+8 > Sep 24: Log in not working again. Error ENTNOT Try wrong Email or wrong Password
+
 2: found out that I am not encrypting passwords when comparing them
 
 1: trying to solve user redirecting user to dashboard

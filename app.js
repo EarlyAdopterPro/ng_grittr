@@ -109,19 +109,18 @@ app.post('/api/login', function(req, res) {
         console.log ("ExpressJS app.js -> /api/login/ -> User Found");
         console.log ("> Email = " + req.body.email);
         console.log ("> Password = " + req.body.password);
-        if (req.body.email == profile.email){
-          if (req.body.password == profile.password){
-            console.log(">> LOGIN OK => Email and password match");
-            res.send(true);
+        console.log ("> Pofile ====================================");
+        console.log (profile);
+        
+        profile.comparePassword(req.body.password, function(err, isMatch){
+            console.log('>>> comaprePassword') ;
+            console.log(err);
+            console.log(isMatch);
+            //if (isMatch) res.send(true);
+            if (isMatch) res.send(profile);
+            else res.send(false);
           }
-          else {
-            console.log(">> LOGIN ERR => Password does not match"); 
-            res.send(false);
-          }
-        } else {
-            console.log(">> LOGIN ERR => Email does not match");
-            res.send(false);
-        }
+        )
       }
     }); 
   } else { // email validator else
@@ -131,8 +130,38 @@ app.post('/api/login', function(req, res) {
 });
 
 
+// Update User Profile, called from Auth Service 
+app.post('/api/updateProfile', function(req, res) { 
 
- 
+  console.log("============= > $HTTP /api/updateProfile ====================");
+
+  console.log("> req.body = " + req.body);
+  console.log("> req.params = " + req.params);
+  console.log("> req.body.profile= " + req.body.profile);
+  req.body.profile.details['wizard_progress'] = 2;
+  for (key in req.body.profile){
+    console.log(key);
+    console.log(req.body.profile[key]);
+  }
+
+
+  User.update({ email:req.body.profile.email }, 
+                req.body.profile, 
+              { overwrite:true },
+              function(err, numberAffected, raw)
+                {
+                  if(err) { console.log(err);
+                  } else {
+              console.log('The number of updated docs: %d', numberAffected);
+              console.log('The raw response from Mongo: ', raw);
+                  }
+                }
+              );
+})
+
+
+
+
 // Entry point for Invites;
 app.get('/invite/:email', function(req, res) {
   console.log("INVITE");
@@ -157,7 +186,7 @@ app.get('/invite/:email', function(req, res) {
           }, function (err, user){
               if(err)
                 res.send(err)
-              res.redirect("/wizard#/invite/" + req.params.email);
+              res.redirect("/#/invite/" + req.params.email);
           });
           console.log("Wizard progress: 0; new profile created");
       } else {
@@ -169,7 +198,7 @@ app.get('/invite/:email', function(req, res) {
             res.redirect("/");
           } else {
             console.log("Password was not set, redirecting to wizard");
-            res.redirect("/wizard#/invite/" + req.params.email);
+            res.redirect("/#/invite/" + req.params.email);
           }
         }
     }); // User.findOne ends here;

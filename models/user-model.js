@@ -9,11 +9,11 @@ var mongoose = require ('mongoose'),
 var UserSchema = mongoose.Schema({
   email: { type: String, unique: true, required:true, index: {unique:true} },
   password: { type: String, default: null }, 
-  roles: [{ title: String, color: String, goals: [{title: String}]}],
+  roles: [{ title: String, place: String, color: String, goals: [{title: String}]}],
   // wizard_progress: states - 
   // 0: not started,
   // 1: stopped on Register step, password not yet set
-  // 2: stopped on Roles step, password was set
+  // 2: stopped on Roles step, password was set, Role not set yet
   // 3: stopped on Goals step, password was set, roals defined
   // 4: stopped on Actions step, password was set, roals and goals defined
   // 5: wizard was completed
@@ -54,8 +54,16 @@ UserSchema.pre('save', function(next) {
 
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+    console.log('=========== > user-model -> UserSchema.models.comaprePass');
+    console.log('Original password:' + this.password);
+    console.log('user input passwd:' + candidatePassword);
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
+        if (err) {
+          console.log('ERROR');
+          console.log(err);
+          return cb(err);
+        }
+        console.log('=== BCRYPT Callbacl ===');
         cb(null, isMatch);
     });
 };

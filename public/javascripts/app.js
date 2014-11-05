@@ -72,22 +72,57 @@ angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
 
 // AUTH
 angular.module('auth', [])
-
-    .service('AuthService', [function(){
+    .service('AuthService', ['$http', function($http){
         var userIsAuthenticated = false;
         var userEmail = 'NotYetSet';
+        var userProfile = null;
 
-        this.setUserAuthenticated = function(value, email) {
+        // Set User var
+        this.setUserAuthenticated = function(value, email, profile) {
             userIsAuthenticated = value;
             console.log("AuthService:setUserAuthenrication: " + value + " & email:  " + email)
             userEmail = email;
+            userProfile = profile;
         };
 
+        // Get User var
         this.getUserCredentials = function() {
             console.log("AuthService:getUserCredentials -> userEmail = " + userEmail);
             return userEmail;
         };
 
+        // Get User Profile 
+        this.getUserProfile = function() {
+
+            console.log("AuthService:getUserProfile");
+
+            userProfile.save = function(){
+              console.log("============= $HTTP /api/updateProfile > =========");
+              // create your request to your resource or $http request
+              $http({ method:"post", 
+                      url:"/api/updateProfile", 
+                      data:{  
+                              profile:userProfile
+                           }})
+              .success(function(data) {
+                  // Everything is ok.
+                  // get password as data variable
+                   console.log("AuthSrv:userProfile.save->(http:post.SUCCESS");
+                   console.log("> data = " + data);
+                  // return data;
+
+               })
+              .error(function(data) {
+                  console.log('AuthSrv:userProfile.save->http:post.ERR: '+data);
+                  //callback(data);
+                  return false;
+              });
+            };
+
+            return userProfile;
+        };
+
+        // Check authenticated status
         this.getUserAuthenticated = function() {
             return userIsAuthenticated;
         };
@@ -113,9 +148,10 @@ angular.module('login', [])
                             password:password
                          }})
             .success(function(data) {
-            // Everything is ok.
+              // Everything is ok.
+              // get password as data variable
               console.log("LoginService -> http[post].success");
-              console.log("> data =" + data);
+              console.log("> data = " + data);
               callback(data);
               // return data;
 
@@ -129,3 +165,16 @@ angular.module('login', [])
 
         return this;
 }]);
+
+angular.module('planner', [])
+    .service('PlannerService', ['$http', function($http) {
+    var userID = null;
+
+    this.getUserDetails = function(user, callback){
+
+    };
+}]);
+
+
+
+
