@@ -55,20 +55,12 @@ function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginS
 } // WelcomeCtrl ends here 
 
 //Wizard of Roles
-function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginService) {
+function RoleCtrl($scope, $location, $timeout, AuthService) {
   console.log ('=================== Role Controller ===================');
   var localProfile = AuthService.getUserProfile(); 
   $scope.userRoles = localProfile.roles;
 
-
-  $scope.prev = function(){
-    if ($routeParams.email){
-      $location.path('/invite/'+ $routeParams.email); 
-    } else {
-      $location.path('/invite/');
-    }
-  };
-
+  // default color schema for different Roles5
   grittrColors = [ 
     'grittr-yellow',
     'grittr-green',
@@ -76,13 +68,16 @@ function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginS
     'grittr-red'
   ];
 
+  // Placeholder for fresh form with three sample inputs
   $scope.newRoles=[
     {role:'', place:'', color:grittrColors[2]},
     {role:'', place:'', color:grittrColors[0]},
     {role:'', place:'', color:grittrColors[1]}
   ];
-
+  // Default state of 'Delete Role' button is Hidden 
   $scope.showDelete = 0;
+
+  // Sample roles for new input fields, hints for users
   $scope.sampleRoles = [
     {role:'manager', place:'company name', color:grittrColors[2]},
     {role:'sister', place:'family', color:grittrColors[0]},
@@ -95,6 +90,7 @@ function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginS
     {role:'writer', place:'freelance', color:grittrColors[0]}
    ];
 
+  // User can add up to 9 roles
   additionalSampleRoles = [
     {role:'', place:'', color:grittrColors[3]},
     {role:'', place:'', color:grittrColors[2]},
@@ -124,14 +120,23 @@ function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginS
                 console.log($scope.newRoles);
                 }, 1000);  
     };
+  // TODO: take care of PREV button in roles
+  $scope.prev = function(){
+    if ($routeParams.email){
+      $location.path('/invite/'+ $routeParams.email); 
+    } else {
+      $location.path('/invite/');
+    }
+  };
 
   $scope.next = function() {
     console.log ('------++++++++++ ROLES ++++++--------');
     console.log ($scope.newRoles);
     // TODO: 
-    // #0 Check if all roles has values and places
+    // #0 Check if all _new_ roles has values and places
+    // #0.1 Check if there previous entered roles
 
-    // We need at least on Role
+    // We need at least one Role
     // if there are empty Roles, remove them from the list
     // if there the list is empty, through the error asking to @ min one role.
 
@@ -145,7 +150,15 @@ function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginS
     // 1. Modal confirmation window 'Do you want to leave them empty?'
     // 2. Cancel transaction and through an error
     // 3.  
+
+    
+    // Counter to make sure we have at least one role or place
     var count = 0;
+
+    // If there were previously saved roles, update them first 
+    if ($scope.userRoles) { localProfile.roles = $scope.userRoles; count++}
+
+    // Count if there any new roles
     for (key in $scope.newRoles) {
       var obj = $scope.newRoles[key];
 
@@ -162,20 +175,20 @@ function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginS
           localProfile.roles = [obj];
         }
         count++;
-        
       }
-      console.log('================');
     }
 
     console.log('final Roles ====== ');
-    console.log($scope.newRoles);
+    console.log(localProfile.roles);
     
     // #1 Save all field roles in Database
     // #2 Follow the path
     if (count > 0) {
       console.log(localProfile);
-      alert('pause');
+      // update wizard progress status
+      localProfile.details['wizard_progress'] = 3;
       localProfile.save();
+
       $location.path('/goals'); 
     }
     else {
@@ -192,7 +205,12 @@ function RoleCtrl($scope, $location, $timeout, $routeParams, AuthService, LoginS
 } // END OF ROLES CONTROLLER
 
 // GOAL CONTROLLER
-function GoalCtrl($scope, $location) {
+function GoalCtrl($scope, $location, $timeout, AuthService) {
+
+  console.log ('=================== Role Controller ===================');
+  var localProfile = AuthService.getUserProfile(); 
+  $scope.userRoles = localProfile.roles;
+
   $scope.next = function() {
     $location.path('/goals'); 
   };
@@ -283,7 +301,7 @@ function DashCtrl($scope, $location, AuthService, LoginService){
       $location.path('/roles');
       break;
     case 2:
-      console.log('> Switch Case Two');
+      console.log('> Switch Case Two: Partial roles was input, not saved');
       $location.path ('/roles');
       break;
     case 3:

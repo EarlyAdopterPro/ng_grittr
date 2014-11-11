@@ -5,7 +5,7 @@
           <div class="ace-wizard">
             <div class="widget-box">
               <div class="widget-header">
-                <h4 class="widget-title lighter">Your password was saved</h5>
+                <h4 class="widget-title darker">Your password was saved</h5>
               </div>
                 
                 <div class="widget-body">
@@ -44,11 +44,12 @@
                       <div class="step-pane active" id="step1">
                         <h3 class="lighter block green">Enter roles you have in your life</h3>
 
+
                           <form class="form-inline" role="form" name="RoleForm">
                           <!-- this div should accept color var from role from MongoDB and appy it -->
-                             <div class="form-group grittr-form-group" 
+                             <div class="form-group grittr-form-group {{roleItem.color}}" 
                                 ng-if="userRoles"
-                                ng-repeat="roleItem in userRoles" 
+                                ng-repeat="roleItem in userRoles track by $index" 
                                 ng-mouseover="showDelete=1" 
                                 ng-mouseleave="showDelete=0"
                                 ng-class="{slideUp: visible}">
@@ -58,6 +59,8 @@
                               <input type="text" class="form-control" id="exampleInputPassword2" ng-model="roleItem.place">
                                 <span ng-show="showDelete" ng-click="visible = 'hideMe'; removeRole($index)">[ x ]</span>
                             </div>
+<h3 class="lighter block green" ng-if="userRoles">Do you want to add more roles?</h3>
+                                
 
                              <div class="form-group grittr-form-group {{roleItem.color}}" 
                                 ng-repeat="roleItem in newRoles track by $index" 
@@ -65,7 +68,6 @@
                                 ng-mouseleave="showDelete=0"
                                 ng-class="{slideUp: visible}"
                                 >
-                                <span class="error" ng-show="RoleForm..$error.required">Required!</span>
                               <label class="control-label" for="exampleInputEmail2">I am a  </label>
                               <input type="text" class="form-control has-warning" id="exampleInputEmail2" placeholder="{{sampleRoles[$index].role}}" ng-model="roleItem.role" required >
                               <label class="control-label" for="exampleInputPassword2"> at </label>

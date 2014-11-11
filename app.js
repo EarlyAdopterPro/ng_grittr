@@ -99,7 +99,7 @@ app.post('/api/login', function(req, res) {
   console.log("> req.body.password = " + req.body.password);
 
   if (validator.isEmail(req.body.email)) {
-    User.findOne({email:req.body.email},'email password details', function (err, profile)    {
+    User.findOne({email:req.body.email},'email password details roles', function (err, profile)    {
       if (err)
         res.send(err);
       if(!profile){
@@ -138,17 +138,16 @@ app.post('/api/updateProfile', function(req, res) {
   console.log("> req.body = " + req.body);
   console.log("> req.params = " + req.params);
   console.log("> req.body.profile= " + req.body.profile);
-  req.body.profile.details['wizard_progress'] = 2;
+
   for (key in req.body.profile){
     console.log(key);
     console.log(req.body.profile[key]);
   }
 
-
-  User.update({ email:req.body.profile.email }, 
-                req.body.profile, 
-              { overwrite:true },
-              function(err, numberAffected, raw)
+  User.update({ email:req.body.profile.email }, // find User by email
+                req.body.profile,               // update whole profil
+              { overwrite:true },               // options
+              function(err, numAffected, raw)   // callback
                 {
                   if(err) { console.log(err);
                   } else {

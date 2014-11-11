@@ -2,6 +2,9 @@
 Nov 5: Need to take care of switch cases when Roles already inputed & Wizard = 2
 
 --------------------------------- LEFTOVERS ------------------------------------
+
+Nov 10: ajax/socket.io save role/goals while they are inputed. 
+
 Sep 14: Take care of 'Wrong Password case' when user logs in. 
 
 Aug 7: Process error messages coming to login.html via URL GET parametrs from app.js line 120 for example. Pure JS not efficient, need to try either JQuery or create Angular app for login. 
@@ -16,6 +19,8 @@ Aug 7: Process error messages coming to login.html via URL GET parametrs from ap
 =================================== PROGRESS =================================
 
 ----------------------------------- NOVEMBER ---------------------------------
+11: 
+10:
 5: Adding goals to Mongo, updating Wizard status
 
 

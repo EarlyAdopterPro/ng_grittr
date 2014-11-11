@@ -9,12 +9,12 @@ var mongoose = require ('mongoose'),
 var UserSchema = mongoose.Schema({
   email: { type: String, unique: true, required:true, index: {unique:true} },
   password: { type: String, default: null }, 
-  roles: [{ title: String, place: String, color: String, goals: [{title: String}]}],
+  roles: [{ role: String, place: String, color: String, goals: [{title: String}]}],
   // wizard_progress: states - 
   // 0: not started,
   // 1: stopped on Register step, password not yet set
-  // 2: stopped on Roles step, password was set, Role not set yet
-  // 3: stopped on Goals step, password was set, roals defined
+  // 2: stopped on Roles step, password was set, roles inputed in text fields but never saved
+  // 3: stopped on Goals step, password was set, roles defined
   // 4: stopped on Actions step, password was set, roals and goals defined
   // 5: wizard was completed
   details: {wizard_progress: {type: Number, min:0, max:5} }
