@@ -13,7 +13,9 @@ $("#centercol").css( "border", "2px solid red" );
 // Shorthand for $( document ).ready()
 $(function() {
  alert('debug 1');
-//$( "#centercol" ).prepend( "<p>Test</p>" );
 
 $("#centercol").css( "border", "2px solid red" );
+$("#centercol").prepend( "<p>Test Test Test </p>" );
+
+ 
 });
