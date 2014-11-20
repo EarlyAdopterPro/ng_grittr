@@ -10,5 +10,6 @@ alert('testing Hack');
 
  // Shorthand for $( document ).ready()
 $(function() {
+ alert('debug 1');
 $( "#centercol" ).prepend( "<p>Test</p>" );
 });
