@@ -4,7 +4,7 @@
 // @include     http://www.amazon.com/
 // @version     1
 // @grant       none
-// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js
+// @require       https://code.jquery.com/jquery-2.1.1.js
 // ==/UserScript==
 alert('testing Hack');
 
