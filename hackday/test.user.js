@@ -6,4 +6,10 @@
 // @grant       none
 // ==/UserScript==
 alert('testing Hack');
-document.getElementByClass('s9_title').innerHTML = 'test';
+<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+
+// Shorthand for $( document ).ready()
+$(function() {
+$( "#centercol" ).prepend( "<p>Test</p>" );
+});
+
