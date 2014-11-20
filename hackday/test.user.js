@@ -8,8 +8,5 @@
 // ==/UserScript==
 alert('testing Hack');
 
-// Shorthand for $( document ).ready()
-$(function() {
-$( "#centercol" ).prepend( "<p>Test</p>" );
-});
+
  
