@@ -15,7 +15,7 @@ $(function() {
  alert('debug 1');
 
 $("#centercol").css( "border", "2px solid red" );
-$("#centercol").prepend( "<p>Test Test Test </p>" );
+$("#centercol").prepend( "<div>Test Test Test </div>" ).css("border", "2px solid blue");
 
  
 });
