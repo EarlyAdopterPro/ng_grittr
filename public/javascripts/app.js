@@ -6,7 +6,6 @@ angular.module('grittr', ['ngRoute' , 'ngAnimate', 'auth', 'login'])
                 {templateUrl:'/partials/invite.html', controller:WelcomeCtrl,
                  requireLogin: false 
        })
-
       .when('/invite/', 
                 {templateUrl:'/partials/invite.html', controller:WelcomeCtrl,
                  requireLogin: false 
@@ -94,7 +93,7 @@ angular.module('auth', [])
         // Get User Profile 
         this.getUserProfile = function() {
 
-            console.log("AuthService:getUserProfile");
+            console.log("in AuthService:getUserProfile");
 
             userProfile.save = function(){
               console.log("============= $HTTP /api/updateProfile > =========");
@@ -154,7 +153,6 @@ angular.module('login', [])
               console.log("> data = " + data);
               callback(data);
               // return data;
-
              })
             .error(function(data) {
               console.log('LoginService -> http[post].Error: ' + data);

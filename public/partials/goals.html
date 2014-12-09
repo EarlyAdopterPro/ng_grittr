@@ -49,33 +49,30 @@
                     <div class="step-content pos-rel" id="step-container">
                       <div class="step-pane active" id="step1">
                         <h3 class="lighter block green">Enter your goals for each role</h3>
-
                           <form class="form-inline" role="form">
-
-                            <div class="form-group grittr-form-group grittr-yellow">
-                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
-                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="manager">
-                              <label class="control-label" for="exampleInputPassword2"> at </label>
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="company">
-                            </div>
-
-                             <div class="form-group grittr-form-group grittr-green">
-                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
-                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="sister">
-                              <label class="control-label" for="exampleInputPassword2"> at </label>
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="family">
-                            </div>
-
-                            <div class="form-group grittr-form-group grittr-blue">
-                              <label class="control-label" for="exampleInputEmail2">I am a  </label>
-                              <input type="email" class="form-control has-warning" id="exampleInputEmail2" placeholder="volonteer">
-                              <label class="control-label" for="exampleInputPassword2"> at </label>
-                              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="community">
-                            </div><!-- ./form-group .grittr-green -->
+                             <div class="form-group grittr-form-group {{roleItem.color}}" 
+                              ng-if="userRoles"
+                              ng-repeat="roleItem in userRoles track by $index"
+                              ng-mouseover="showDelete=1" 
+                              ng-mouseleave="showDelete=0"
+                              ng-class="{slideUp: visible}">
+                              <p class="grittr-form-group {{roleItem.color}}">
+                                as a <strong>{{roleItem.role}}</strong> at <em>{{roleItem.place}}</em> I want to achieve:
+                              </p>
+                              <input  type="text" 
+                                      class="form-control has-warning" 
+                                      id="exampleInputEmail2" 
+                                      ng-model="roleItem.role.goal" 
+                                      placeholder='your goal'>
+                              <span ng-show="showDelete" 
+                                    ng-click="visible = 'hideMe'; 
+                                              removeGoal($index)">[ x ]</span>
           
-                          <button type="button" class="btn btn-default btn-md grittr-btn-plus">
-                            <span class="glyphicon glyphicon-plus"></span>
+                          <button type="button" class="btn btn-default btn-sm grittr-btn-plus-goal" ng-click="addGoal($index)">
+                            <span class="glyphicon glyphicon-plus"> One more goal</span>
                           </button>
+                            </div>
+
                       </div><!-- /.step-one .active -->
 
                     </div><!-- /.step-pane .active -->  

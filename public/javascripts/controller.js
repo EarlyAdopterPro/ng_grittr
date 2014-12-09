@@ -1,4 +1,4 @@
-// Invite On-Boarding Wizard;
+// Invite On-Boarding Wizard
 function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginService){
 
   // Get GET vars email
@@ -21,7 +21,7 @@ function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginS
     if ($scope.password1 != $scope.password2){
       alert("Password should match");
     } else {
-      // #3. Check if there is already this email in DB
+      // Check if there is already this email in DB
       $http({ method:"post", 
               url:"/api/setpass", 
               data:{  
@@ -29,12 +29,20 @@ function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginS
                       password:$scope.password1
                    }})
       .success(function(data) {
-      // Everything is ok.
-        alert ('WelcomeCtrl: login user ');
+        // Everything is ok.
         console.log(data);
-        console.log(data.email);
 
-        AuthService.setUserAuthenticated(true, data.email);
+        LoginService.attemptLogin(data.email, $scope.password1, function(userLoggedIn) {
+          console.log("============ WelcomeCtrl - attemp Login - Callback -> userLoggedIn = " + userLoggedIn);
+          if (userLoggedIn.err){
+            $location.path('/').search(userLoggedIn);
+          } else if (userLoggedIn) {
+            AuthService.setUserAuthenticated(true, userLoggedIn.email, userLoggedIn);
+            $location.path('/dashboard');
+          } else {
+            $location.path('/').search({err:1, msg:'Undefined error'});
+          }
+        });
 
 
         if ($routeParams.email) {
@@ -58,7 +66,10 @@ function WelcomeCtrl($scope, $location, $routeParams, $http, AuthService, LoginS
 function RoleCtrl($scope, $location, $timeout, AuthService) {
   console.log ('=================== Role Controller ===================');
   var localProfile = AuthService.getUserProfile(); 
-  $scope.userRoles = localProfile.roles;
+  
+  if (Object.keys(localProfile.roles).length > 1) {
+    $scope.userRoles = localProfile.roles;
+  }
 
   // default color schema for different Roles5
   grittrColors = [ 
@@ -74,6 +85,7 @@ function RoleCtrl($scope, $location, $timeout, AuthService) {
     {role:'', place:'', color:grittrColors[0]},
     {role:'', place:'', color:grittrColors[1]}
   ];
+
   // Default state of 'Delete Role' button is Hidden 
   $scope.showDelete = 0;
 
@@ -102,14 +114,9 @@ function RoleCtrl($scope, $location, $timeout, AuthService) {
 
   iterator = 0;
 
-  // console.log($scope.sampleRoles);
-     
   $scope.addRole = function() {
     $scope.newRoles.push(additionalSampleRoles[iterator++%6]);
-    //console.log($scope.sampleRoles);
-
     //TODO: count newRoles. If == 9 hide Add Role button
-      
   };
 
   $scope.removeRole = function(roleIndex) {
@@ -149,26 +156,36 @@ function RoleCtrl($scope, $location, $timeout, AuthService) {
     // Possible soulutions:
     // 1. Modal confirmation window 'Do you want to leave them empty?'
     // 2. Cancel transaction and through an error
-    // 3.  
-
     
     // Counter to make sure we have at least one role or place
     var count = 0;
 
     // If there were previously saved roles, update them first 
-    if ($scope.userRoles) { localProfile.roles = $scope.userRoles; count++}
+
+      for (key in $scope.userRoles) {
+        var obj = $scope.userRoles[key];
+        // delete empty forms from scope
+        if (obj.role === '' && obj.place === ''){
+          delete $scope.userRoles[key];
+        } else {
+          if(localProfile.roles){
+            localProfile.roles.push(obj);
+          } else {
+            localProfile.roles = [obj];
+          }
+          count++;
+        }
+    }
 
     // Count if there any new roles
     for (key in $scope.newRoles) {
       var obj = $scope.newRoles[key];
 
+      // delete empty forms from scope
       if (obj.role === '' && obj.place === ''){
-        console.log ('----------------');
-        console.log ('Empty role key ' + key);
         delete $scope.newRoles[key];
       }
       else {
-        console.log('++++++++ ' + count + ' +++++++++++++');
         if(localProfile.roles){
           localProfile.roles.push(obj);
         } else {
@@ -200,16 +217,18 @@ function RoleCtrl($scope, $location, $timeout, AuthService) {
       alert('Please, provide at least one Role or Place');
     }
   };
-
-
 } // END OF ROLES CONTROLLER
 
 // GOAL CONTROLLER
 function GoalCtrl($scope, $location, $timeout, AuthService) {
 
-  console.log ('=================== Role Controller ===================');
+  console.log ('=================== Gole Controller ===================');
   var localProfile = AuthService.getUserProfile(); 
   $scope.userRoles = localProfile.roles;
+
+  $scope.addGoal = function(role){
+
+  }
 
   $scope.next = function() {
     $location.path('/goals'); 
@@ -252,32 +271,15 @@ function LoginCtrl($scope, $location, $window, AuthService, LoginService){
         console.log('============ Login Controller =================');
     
         $scope.loginAction = function() {
-          //AuthService.setUserAuthenticated(true, data.email);
-          console.log("LoginCtrl -> loginAction call");
-          console.log("> loginEmail= "+$scope.loginEmail+"; loginPass= "+$scope.loginPassword);
-          
           LoginService.attemptLogin($scope.loginEmail, $scope.loginPassword, function(userLoggedIn) {
-  
-            console.log("-.-.-.--.-.-.--> LoginCtrl Callback -> userLoggedIn = " + userLoggedIn);
-            if (userLoggedIn != 'false') {
-              console.log("LoginCtrl -> Profile.email = " + userLoggedIn.email);
-              console.log("LoginCtrl -> Profile = " + userLoggedIn.details['wizard_progress']);
-              console.log("LoginCtrl -> retrived password" + userLoggedIn.password);
-              console.log("LoginCtrl -> user provided password" + $scope.loginPassword);
-
-              // check two password
-              console.log("LoginCtrl -> SetUserAuth");
+            console.log("============ LoginCtrl Callback -> userLoggedIn = " + userLoggedIn);
+            if (userLoggedIn.err){
+              $location.path('/').search(userLoggedIn);
+            } else if (userLoggedIn) {
               AuthService.setUserAuthenticated(true, userLoggedIn.email, userLoggedIn);
-              console.log(AuthService.getUserAuthenticated()); 
-$scope = $scope || angular.element(document).scope();
               $location.path('/dashboard');
-              
-              // Check at what stage is Wizard?
-              // If wizard is not finished, redirect to required step
-              // Else redirect to Dashboard
-
             } else {
-              $location.path='/?err=1';
+              $location.path('/').search({err:1, msg:'Undefined error'});
             }
           });
         }

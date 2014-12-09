@@ -1,4 +1,7 @@
 --------------------------------- TO-DO LOG -----------------------------------
+
+Dec 8: NEXT: Should not create 'roles' attribute of user object on the first registration. It pops up as one empty object on RolesCtrl. 
+
 Nov 5: Need to take care of switch cases when Roles already inputed & Wizard = 2
 
 --------------------------------- LEFTOVERS ------------------------------------
@@ -17,6 +20,10 @@ Aug 7: Process error messages coming to login.html via URL GET parametrs from ap
 
 
 =================================== PROGRESS =================================
+
+
+----------------------------------- DECEMBER ---------------------------------
+
 
 ----------------------------------- NOVEMBER ---------------------------------
 11: 

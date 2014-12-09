@@ -46,7 +46,7 @@ var User = mongoose.model('User', UserModel.UserSchema);
 // post User - create a new record for a new user
 
 app.post('/api/setpass', function(req, res) { 
-  console.log("SetPass Mongoos api hit");
+  console.log("======== SetPass Mongoos api hit");
   console.log(req.body);
   console.log(req.params);
 
@@ -104,7 +104,7 @@ app.post('/api/login', function(req, res) {
         res.send(err);
       if(!profile){
         console.log ("ExpressJS app.js -> /api/login/ -> User NOT Found");
-        res.send("Error: User Not Found");
+        res.send({err:1, msg:'Error: User Not Found'});
       } else {
         console.log ("ExpressJS app.js -> /api/login/ -> User Found");
         console.log ("> Email = " + req.body.email);
@@ -118,7 +118,7 @@ app.post('/api/login', function(req, res) {
             console.log(isMatch);
             //if (isMatch) res.send(true);
             if (isMatch) res.send(profile);
-            else res.send(false);
+            else res.send({err:1, msg:'Error: password does not match'});
           }
         )
       }
@@ -151,19 +151,16 @@ app.post('/api/updateProfile', function(req, res) {
                 {
                   if(err) { console.log(err);
                   } else {
-              console.log('The number of updated docs: %d', numberAffected);
+              console.log('The number of updated docs: %d', numAffected);
               console.log('The raw response from Mongo: ', raw);
                   }
                 }
               );
 })
 
-
-
-
 // Entry point for Invites;
 app.get('/invite/:email', function(req, res) {
-  console.log("INVITE");
+  console.log("------ APP JS: INVITE---------");
   console.log(req.params.email);
 
   // Check if email format is valid
@@ -180,7 +177,6 @@ app.get('/invite/:email', function(req, res) {
           User.create({
             email:req.params.email,
             password: null,
-            roles:[{}],
             details:{wizard_progress: 0}
           }, function (err, user){
               if(err)
@@ -193,7 +189,7 @@ app.get('/invite/:email', function(req, res) {
           console.log(user.email);
             
           if(user.details.wizard_progress > 0  && user.password != null) {
-            console.log("Password was set previously, redirecting to home");
+            console.log("Password was set previously, can not use invite form. redirecting to home");
             res.redirect("/");
           } else {
             console.log("Password was not set, redirecting to wizard");

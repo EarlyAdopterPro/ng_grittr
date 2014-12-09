@@ -16,6 +16,12 @@
   }
 }
 
+.grittr-btn-plus-goal {
+  margin-top:5px;
+  display: block !important; 
+  border-radius:0;
+}
+
 .grittr-btn-arrow {
   border-radius: 0;
 }
@@ -44,6 +50,7 @@
 
 
 /* Color for different roles */
+
 .grittr-yellow input {
   border-color: #e0c43a;
   color: #d3bd50;
@@ -55,6 +62,8 @@
   color: #887755;
   border-color: #d8bc41;
 }
+
+.grittr-yellow,
 .grittr-yellow .control-label,
 .grittr-yellow .help-block,
 .grittr-yellow .help-inline {
@@ -73,6 +82,7 @@
   border-color: #81a85a;
 }
 
+.grittr-green ,
 .grittr-green .control-label,
 .grittr-green .help-block,
 .grittr-green .help-inline {
@@ -91,6 +101,7 @@
   border-color: #5a81a8;
 }
 
+.grittr-blue ,
 .grittr-blue .control-label,
 .grittr-blue .help-block,
 .grittr-blue .help-inline {
@@ -109,6 +120,7 @@
   border-color: #f09784;
 }
 
+.grittr-red ,
 .grittr-red .control-label,
 .grittr-red .help-block,
 .grittr-red .help-inline {
